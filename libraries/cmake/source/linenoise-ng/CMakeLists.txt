@@ -19,6 +19,12 @@ function(linenoisengMain)
     thirdparty_cxx_settings
   )
 
+  if(PLATFORM_FREEBSD)
+    target_compile_options(thirdparty_linenoise-ng PRIVATE
+      -include sys/stat.h
+    )
+  endif()
+
   target_include_directories(thirdparty_linenoise-ng PRIVATE
     "${library_root}/include"
   )
