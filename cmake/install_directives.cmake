@@ -362,7 +362,70 @@ function(generateInstallDirectives)
       PERMISSIONS
         OWNER_READ OWNER_WRITE OWNER_EXECUTE
         GROUP_READ             GROUP_EXECUTE
-        WORLD_READ             WORLD_EXECUTE 
+        WORLD_READ             WORLD_EXECUTE
+    )
+
+  elseif(PLATFORM_FREEBSD)
+    if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+      set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "" FORCE)
+    endif()
+
+    install(
+      TARGETS osqueryd
+      DESTINATION "bin"
+    )
+
+    execute_process(
+      COMMAND "${CMAKE_COMMAND}" -E create_symlink osqueryd osqueryi
+      WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+    )
+
+    install(
+      FILES "${CMAKE_CURRENT_BINARY_DIR}/osqueryi"
+      DESTINATION "bin"
+    )
+
+    install(
+      FILES "tools/deployment/osqueryctl"
+      DESTINATION "bin"
+
+      PERMISSIONS
+        OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        GROUP_READ             GROUP_EXECUTE
+        WORLD_READ             WORLD_EXECUTE
+    )
+
+    install(
+      FILES "tools/deployment/osquery.example.conf"
+      DESTINATION "share/osquery"
+    )
+
+    install(
+      DIRECTORY "${augeas_lenses_path}/"
+      DESTINATION "share/osquery/lenses"
+      FILES_MATCHING PATTERN "*.aug"
+      PATTERN "tests" EXCLUDE
+    )
+
+    install(
+      FILES "${augeas_lenses_path}/../COPYING"
+      DESTINATION "share/osquery/lenses"
+    )
+
+    install(
+      DIRECTORY "packs"
+      DESTINATION "share/osquery"
+    )
+
+    install(
+      FILES "${CMAKE_SOURCE_DIR}/tools/deployment/certs.pem"
+      DESTINATION "share/osquery/certs"
+    )
+
+    install(
+      FILES "LICENSE"
+      DESTINATION "share/osquery"
+      RENAME "LICENSE.txt"
     )
 
   else()
