@@ -4057,6 +4057,12 @@ function(generateAwsCCommon)
       ENABLE_OPENSSL_ENCRYPTION
     )
 
+  elseif(PLATFORM_FREEBSD)
+    target_compile_definitions(thirdparty_aws-c-common PRIVATE
+      AWS_AFFINITY_METHOD=AWS_AFFINITY_METHOD_NONE
+      ENABLE_OPENSSL_ENCRYPTION
+    )
+
   elseif(PLATFORM_MACOS)
     target_compile_definitions(thirdparty_aws-c-common PRIVATE
       AWS_AFFINITY_METHOD=AWS_AFFINITY_METHOD_NONE
