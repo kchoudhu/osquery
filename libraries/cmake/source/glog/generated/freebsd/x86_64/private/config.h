@@ -8,7 +8,7 @@
 #define GOOGLE_NAMESPACE google
 
 /* Define if you have the `dladdr' function */
-/* #undef HAVE_DLADDR */
+#define HAVE_DLADDR
 
 /* Define if you have the `snprintf' function */
 #define HAVE_SNPRINTF
@@ -83,7 +83,7 @@
 #define HAVE_STRINGS_H
 
 /* Define to 1 if you have the <syscall.h> header file. */
-#define HAVE_SYSCALL_H
+/* #undef HAVE_SYSCALL_H */
 
 /* Define to 1 if you have the <syslog.h> header file. */
 #define HAVE_SYSLOG_H
@@ -110,7 +110,7 @@
 #define HAVE_SYS_WAIT_H
 
 /* Define to 1 if you have the <ucontext.h> header file. */
-#define HAVE_UCONTEXT_H
+/* #undef HAVE_UCONTEXT_H */
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
@@ -181,7 +181,7 @@
 /* #undef STDC_HEADERS */
 
 /* the namespace where STL code like vector<> is defined */
-/* #undef STL_NAMESPACE */
+#define STL_NAMESPACE std
 
 /* location of source code */
 #define TEST_SRC_DIR ""
@@ -190,7 +190,7 @@
 /* #undef GLOG_THREAD_LOCAL_STORAGE */
 
 /* Check whether aligned_storage and alignof present */
-#define HAVE_ALIGNED_STORAGE 1
+/* #undef HAVE_ALIGNED_STORAGE */
 
 /* Check whether C++11 atomic is available */
 #define HAVE_CXX11_ATOMIC 1
