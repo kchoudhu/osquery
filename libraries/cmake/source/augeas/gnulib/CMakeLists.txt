@@ -53,6 +53,9 @@ function(gnulibMain)
   elseif(PLATFORM_FREEBSD)
     target_sources(thirdparty_gnulib_library PRIVATE
       "${library_root}/lib/vasnprintf.c"
+      "${library_root}/lib/argz.c"
+      "${library_root}/lib/canonicalize-lgpl.c"
+      "${library_root}/lib/stat.c"
     )
 
     if(TARGET_PROCESSOR STREQUAL "x86_64")

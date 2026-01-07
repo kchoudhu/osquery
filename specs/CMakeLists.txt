@@ -35,7 +35,6 @@ function(generateNativeTables)
     azure_instance_tags.table
     carbon_black_info.table
     carves.table
-    certificates.table
     chrome_extensions.table
     chrome_extension_content_scripts.table
     curl.table
@@ -60,7 +59,6 @@ function(generateNativeTables)
     python_packages.table
     routes.table
     ssh_configs.table
-    startup_items.table
     system_info.table
     uptime.table
     user_ssh_keys.table
@@ -74,8 +72,6 @@ function(generateNativeTables)
     utility/osquery_registry.table
     utility/osquery_schedule.table
     utility/time.table
-    yara.table
-    yara_events.table
     ycloud_instance_metadata.table
   )
 
@@ -85,8 +81,12 @@ function(generateNativeTables)
 
   set(platform_dependent_spec_files
     "arp_cache.table:linux,macos,windows"
+    "certificates.table:linux,macos,windows"
+    "startup_items.table:linux,macos,windows"
     "vscode_extensions.table:linux,macos,windows"
     "cpu_info.table:linux,macos,windows"
+    "yara.table:linux,macos,windows"
+    "yara_events.table:linux,macos,windows"
     "darwin/account_policy_data.table:macos"
     "darwin/ad_config.table:macos"
     "darwin/alf.table:macos"
