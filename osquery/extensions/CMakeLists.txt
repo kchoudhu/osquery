@@ -45,10 +45,6 @@ function(generateOsqueryExtensionsImplthrift)
 
   enableLinkWholeArchive(osquery_extensions_implthrift)
 
-  if(DEFINED PLATFORM_FREEBSD)
-    target_link_options(osquery_extensions_implthrift PUBLIC -lthrift)
-  endif()
-
   target_link_libraries(osquery_extensions_implthrift PUBLIC
     osquery_cxx_settings
     osquery_extensions_extensionsinterface

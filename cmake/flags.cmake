@@ -278,12 +278,11 @@ function(setupBuildFlags)
       )
 
       set(freebsd_cxx_link_options
-        -lresolv
         -pthread
       )
 
+      # FreeBSD has resolver and dl functions in libc, no separate libraries needed
       set(freebsd_cxx_link_libraries
-        dl
       )
 
       set(osquery_freebsd_common_defines
