@@ -205,7 +205,7 @@ typedef uint64_t uintmax_t;
 /* #undef ARCHIVE_CRYPTO_MD5_LIBC */
 
 /* MD5 via ARCHIVE_CRYPTO_MD5_LIBSYSTEM supported. */
-#define ARCHIVE_CRYPTO_MD5_LIBSYSTEM 1
+/* #undef ARCHIVE_CRYPTO_MD5_LIBSYSTEM */
 
 /* MD5 via ARCHIVE_CRYPTO_MD5_NETTLE supported. */
 /* #undef ARCHIVE_CRYPTO_MD5_NETTLE */
@@ -229,7 +229,7 @@ typedef uint64_t uintmax_t;
 /* #undef ARCHIVE_CRYPTO_SHA1_LIBC */
 
 /* SHA1 via ARCHIVE_CRYPTO_SHA1_LIBSYSTEM supported. */
-#define ARCHIVE_CRYPTO_SHA1_LIBSYSTEM 1
+/* #undef ARCHIVE_CRYPTO_SHA1_LIBSYSTEM */
 
 /* SHA1 via ARCHIVE_CRYPTO_SHA1_NETTLE supported. */
 /* #undef ARCHIVE_CRYPTO_SHA1_NETTLE */
@@ -250,7 +250,7 @@ typedef uint64_t uintmax_t;
 /* #undef ARCHIVE_CRYPTO_SHA256_LIBC3 */
 
 /* SHA256 via ARCHIVE_CRYPTO_SHA256_LIBSYSTEM supported. */
-#define ARCHIVE_CRYPTO_SHA256_LIBSYSTEM 1
+/* #undef ARCHIVE_CRYPTO_SHA256_LIBSYSTEM */
 
 /* SHA256 via ARCHIVE_CRYPTO_SHA256_NETTLE supported. */
 /* #undef ARCHIVE_CRYPTO_SHA256_NETTLE */
@@ -271,7 +271,7 @@ typedef uint64_t uintmax_t;
 /* #undef ARCHIVE_CRYPTO_SHA384_LIBC3 */
 
 /* SHA384 via ARCHIVE_CRYPTO_SHA384_LIBSYSTEM supported. */
-#define ARCHIVE_CRYPTO_SHA384_LIBSYSTEM 1
+/* #undef ARCHIVE_CRYPTO_SHA384_LIBSYSTEM */
 
 /* SHA384 via ARCHIVE_CRYPTO_SHA384_NETTLE supported. */
 /* #undef ARCHIVE_CRYPTO_SHA384_NETTLE */
@@ -292,7 +292,7 @@ typedef uint64_t uintmax_t;
 /* #undef ARCHIVE_CRYPTO_SHA512_LIBC3 */
 
 /* SHA512 via ARCHIVE_CRYPTO_SHA512_LIBSYSTEM supported. */
-#define ARCHIVE_CRYPTO_SHA512_LIBSYSTEM 1
+/* #undef ARCHIVE_CRYPTO_SHA512_LIBSYSTEM */
 
 /* SHA512 via ARCHIVE_CRYPTO_SHA512_NETTLE supported. */
 /* #undef ARCHIVE_CRYPTO_SHA512_NETTLE */
@@ -316,13 +316,13 @@ typedef uint64_t uintmax_t;
 /* #undef ARCHIVE_XATTR_LINUX */
 
 /* Version number of bsdcpio */
-#define BSDCPIO_VERSION_STRING "3.8.1"
+#define BSDCPIO_VERSION_STRING "3.7.9"
 
 /* Version number of bsdtar */
-#define BSDTAR_VERSION_STRING "3.8.1"
+#define BSDTAR_VERSION_STRING "3.7.9"
 
 /* Version number of bsdcat */
-#define BSDCAT_VERSION_STRING "3.8.1"
+#define BSDCAT_VERSION_STRING "3.7.9"
 
 /* Define to 1 if you have the `acl_create_entry' function. */
 /* #undef HAVE_ACL_CREATE_ENTRY */
@@ -385,7 +385,7 @@ typedef uint64_t uintmax_t;
 #define HAVE_CHROOT 1
 
 /* Define to 1 if you have the <copyfile.h> header file. */
-#define HAVE_COPYFILE_H 1
+/* #undef HAVE_COPYFILE_H */
 
 /* Define to 1 if you have the `ctime_r' function. */
 #define HAVE_CTIME_R 1
@@ -497,10 +497,10 @@ typedef uint64_t uintmax_t;
 /* #undef HAVE_DOPRNT */
 
 /* Define to 1 if nl_langinfo supports D_MD_ORDER */
-#define HAVE_D_MD_ORDER 1
+/* #undef HAVE_D_MD_ORDER */
 
 /* A possible errno value for invalid file format errors */
-#define HAVE_EFTYPE 1
+/* #undef HAVE_EFTYPE */
 
 /* A possible errno value for invalid file format errors */
 #define HAVE_EILSEQ 1
@@ -628,7 +628,7 @@ typedef uint64_t uintmax_t;
 #define HAVE_GETPWUID_R 1
 
 /* Define to 1 if you have the `getvfsbyname' function. */
-#define HAVE_GETVFSBYNAME 1
+/* #undef HAVE_GETVFSBYNAME */
 
 /* Define to 1 if you have the `getxattr' function. */
 /* #undef HAVE_GETXATTR */
@@ -831,7 +831,7 @@ typedef uint64_t uintmax_t;
 #define HAVE_MBRTOWC 1
 
 /* Define to 1 if you have the <membership.h> header file. */
-#define HAVE_MEMBERSHIP_H 1
+/* #undef HAVE_MEMBERSHIP_H */
 
 /* Define to 1 if you have the `memmove' function. */
 #define HAVE_MEMMOVE 1
@@ -997,19 +997,19 @@ typedef uint64_t uintmax_t;
 /* #undef HAVE_STRUCT_STATVFS_F_IOSIZE */
 
 /* Define to 1 if `st_birthtime' is a member of `struct stat'. */
-#define HAVE_STRUCT_STAT_ST_BIRTHTIME 1
+/* #undef HAVE_STRUCT_STAT_ST_BIRTHTIME */
 
 /* Define to 1 if `st_birthtimespec.tv_nsec' is a member of `struct stat'. */
-#define HAVE_STRUCT_STAT_ST_BIRTHTIMESPEC_TV_NSEC 1
+/* #undef HAVE_STRUCT_STAT_ST_BIRTHTIMESPEC_TV_NSEC */
 
 /* Define to 1 if `st_blksize' is a member of `struct stat'. */
 #define HAVE_STRUCT_STAT_ST_BLKSIZE 1
 
 /* Define to 1 if `st_flags' is a member of `struct stat'. */
-#define HAVE_STRUCT_STAT_ST_FLAGS 1
+/* #undef HAVE_STRUCT_STAT_ST_FLAGS */
 
 /* Define to 1 if `st_mtimespec.tv_nsec' is a member of `struct stat'. */
-#define HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC 1
+/* #undef HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC */
 
 /* Define to 1 if `st_mtime_n' is a member of `struct stat'. */
 /* #undef HAVE_STRUCT_STAT_ST_MTIME_N */
@@ -1018,7 +1018,7 @@ typedef uint64_t uintmax_t;
 /* #undef HAVE_STRUCT_STAT_ST_MTIME_USEC */
 
 /* Define to 1 if `st_mtim.tv_nsec' is a member of `struct stat'. */
-/* #undef HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC */
+#define HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC 1
 
 /* Define to 1 if `st_umtime' is a member of `struct stat'. */
 /* #undef HAVE_STRUCT_STAT_ST_UMTIME */
@@ -1030,7 +1030,7 @@ typedef uint64_t uintmax_t;
 /* #undef HAVE_STRUCT_TM___TM_GMTOFF */
 
 /* Define to 1 if you have `struct vfsconf'. */
-#define HAVE_STRUCT_VFSCONF 1
+/* #undef HAVE_STRUCT_VFSCONF */
 
 /* Define to 1 if you have `struct xvfsconf'. */
 /* #undef HAVE_STRUCT_XVFSCONF */
@@ -1039,7 +1039,7 @@ typedef uint64_t uintmax_t;
 #define HAVE_SYMLINK 1
 
 /* Define to 1 if you have the <sys/acl.h> header file. */
-#define HAVE_SYS_ACL_H 1
+/* #undef HAVE_SYS_ACL_H */
 
 /* Define to 1 if you have the <sys/cdefs.h> header file. */
 #define HAVE_SYS_CDEFS_H 1
@@ -1061,7 +1061,7 @@ typedef uint64_t uintmax_t;
 /* #undef HAVE_SYS_MKDEV_H */
 
 /* Define to 1 if you have the <sys/mount.h> header file. */
-#define HAVE_SYS_MOUNT_H 1
+/* #undef HAVE_SYS_MOUNT_H */
 
 /* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
    */
@@ -1080,7 +1080,7 @@ typedef uint64_t uintmax_t;
 #define HAVE_SYS_SELECT_H 1
 
 /* Define to 1 if you have the <sys/statfs.h> header file. */
-/* #undef HAVE_SYS_STATFS_H */
+#define HAVE_SYS_STATFS_H 1
 
 /* Define to 1 if you have the <sys/statvfs.h> header file. */
 #define HAVE_SYS_STATVFS_H 1
@@ -1090,7 +1090,7 @@ typedef uint64_t uintmax_t;
 
 
 /* Define to 1 if you have the <sys/sysmacros.h> header file. */
-/* #undef HAVE_SYS_SYSMACROS_H */
+#define HAVE_SYS_SYSMACROS_H 1
 
 /* Define to 1 if you have the <sys/time.h> header file. */
 #define HAVE_SYS_TIME_H 1
@@ -1105,7 +1105,7 @@ typedef uint64_t uintmax_t;
 #define HAVE_SYS_UTSNAME_H 1
 
 /* Define to 1 if you have the <sys/vfs.h> header file. */
-/* #undef HAVE_SYS_VFS_H */
+#define HAVE_SYS_VFS_H 1
 
 /* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
 #define HAVE_SYS_WAIT_H 1
@@ -1204,7 +1204,7 @@ typedef uint64_t uintmax_t;
 /* #undef HAVE_WORKING_EXT2_IOC_GETFLAGS */
 
 /* Define to 1 if you have a working FS_IOC_GETFLAGS */
-/* #undef HAVE_WORKING_FS_IOC_GETFLAGS */
+#define HAVE_WORKING_FS_IOC_GETFLAGS 1
 
 /* Define to 1 if you have the <zlib.h> header file. */
 /* #undef HAVE_ZLIB_H */
@@ -1249,7 +1249,7 @@ typedef uint64_t uintmax_t;
 
 /* Define to 1 if `major', `minor', and `makedev' are declared in
    <sysmacros.h>. */
-/* #undef MAJOR_IN_SYSMACROS */
+#define MAJOR_IN_SYSMACROS 1
 
 /* Define to 1 if your C compiler doesn't accept -c and -o together. */
 /* #undef NO_MINUS_C_MINUS_O */
@@ -1291,7 +1291,7 @@ typedef uint64_t uintmax_t;
 #endif /* SAFE_TO_DEFINE_EXTENSIONS */
 
 /* Version number of package */
-#define VERSION "3.7.9"
+#define VERSION "3.8.1"
 
 /* Number of bits in a file offset, on hosts where this is settable. */
 /* #undef _FILE_OFFSET_BITS */
