@@ -281,8 +281,9 @@ function(setupBuildFlags)
         -pthread
       )
 
-      # FreeBSD has resolver and dl functions in libc, no separate libraries needed
+      # FreeBSD needs execinfo for backtrace support
       set(freebsd_cxx_link_libraries
+        execinfo
       )
 
       set(osquery_freebsd_common_defines

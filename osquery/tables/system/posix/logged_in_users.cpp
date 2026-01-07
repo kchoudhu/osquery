@@ -39,7 +39,9 @@ QueryData genLoggedInUsers(QueryContext& context) {
   struct utmpx* entry = nullptr;
 
   // switch to the utmp file, and reset to the first entry
+#ifndef __FreeBSD__
   utmpxname(_PATH_UTMPX);
+#endif
   setutxent();
 
   while ((entry = getutxent()) != nullptr) {
