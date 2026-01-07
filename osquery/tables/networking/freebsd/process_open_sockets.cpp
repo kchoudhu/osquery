@@ -86,11 +86,11 @@ void genSockets(struct procstat* pstat,
     r["protocol"] = INTEGER(sock.proto);
 
     addr = sockaddr_to_pair(&(sock.sa_local));
-    r["local_address"] = TEXT(addr.first);
+    r["local_address"] = SQL_TEXT(addr.first);
     r["local_port"] = INTEGER(addr.second);
 
     addr = sockaddr_to_pair(&(sock.sa_peer));
-    r["remote_address"] = TEXT(addr.first);
+    r["remote_address"] = SQL_TEXT(addr.first);
     r["remote_port"] = INTEGER(addr.second);
 
     results.push_back(r);
