@@ -55,6 +55,8 @@ function(gnulibMain)
       "${library_root}/lib/vasnprintf.c"
       "${library_root}/lib/argz.c"
       "${library_root}/lib/canonicalize-lgpl.c"
+      "${library_root}/lib/lstat.c"
+      "${library_root}/lib/readlink.c"
       "${library_root}/lib/stat.c"
     )
 
