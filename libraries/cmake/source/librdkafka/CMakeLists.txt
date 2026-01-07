@@ -23,6 +23,11 @@ function(librdkafkaMain)
     set(config_folder_path
       "${CMAKE_CURRENT_SOURCE_DIR}/config/macos/${TARGET_PROCESSOR}"
     )
+
+  elseif(PLATFORM_FREEBSD)
+    set(config_folder_path
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/freebsd/${TARGET_PROCESSOR}"
+    )
   endif()
 
   add_library(thirdparty_rdkafka_c
@@ -162,7 +167,7 @@ function(librdkafkaMain)
     )
   endif()
 
-  if(PLATFORM_MACOS)
+  if(PLATFORM_MACOS OR PLATFORM_FREEBSD)
     target_link_libraries(thirdparty_rdkafka_c PUBLIC
       m
     )

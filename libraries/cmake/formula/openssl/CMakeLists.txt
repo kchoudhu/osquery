@@ -133,6 +133,42 @@ function(opensslMain)
       "${install_prefix}/lib/libcrypto.a"
     )
 
+  elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
+    set(configure_command
+      "${CMAKE_COMMAND}" -E env "CC=${CMAKE_C_COMPILER}" "AR=${CMAKE_AR}"
+      perl ./Configure BSD-${TARGET_PROCESSOR}
+        ${common_options}
+        ${OSQUERY_FORMULA_CFLAGS}
+
+        "--prefix=${install_prefix}"
+        "--openssldir=${install_prefix}/etc/openssl"
+
+        -fPIC
+        -lpthread
+    )
+
+    set(build_command
+      "${CMAKE_COMMAND}" -E make_directory "${install_prefix}/etc/openssl" &&
+      ${make_command} depend &&
+      ${make_command}
+    )
+
+    set(install_command
+      ${make_command} install_sw install_ssldirs
+    )
+
+    set(openssl_libs
+      "${install_prefix}/lib/libssl.a"
+      "${install_prefix}/lib/libcrypto.a"
+    )
+
+    set_target_properties(thirdparty_openssl_ssl PROPERTIES IMPORTED_LOCATION
+      "${install_prefix}/lib/libssl.a"
+    )
+    set_target_properties(thirdparty_openssl_crypto PROPERTIES IMPORTED_LOCATION
+      "${install_prefix}/lib/libcrypto.a"
+    )
+
   elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
     set(CMAKE_PREFIX_PATH "C:\\Strawberry\\perl\\bin")
     find_package(Perl REQUIRED)

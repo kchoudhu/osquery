@@ -14,6 +14,9 @@ function(libarchiveMain)
   elseif(PLATFORM_MACOS)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/macos/${TARGET_PROCESSOR}")
 
+  elseif(PLATFORM_FREEBSD)
+    set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/freebsd/${TARGET_PROCESSOR}")
+
   elseif(PLATFORM_WINDOWS)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/windows/${TARGET_PROCESSOR}")
   endif()
