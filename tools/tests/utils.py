@@ -65,6 +65,8 @@ def platform():
     platform = sys.platform
     if platform.find("linux") == 0:
         platform = "linux"
+    if platform.find("freebsd") == 0:
+        platform = "freebsd"
     return platform
 
 
