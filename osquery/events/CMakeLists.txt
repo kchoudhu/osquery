@@ -63,7 +63,7 @@ function(generateOsqueryEvents)
       windows/windowseventlogparserservice.cpp
       windows/windowseventlogparser.cpp
     )
-	
+
     if(OSQUERY_BUILD_ETW)
       list(APPEND source_files
         windows/etw/etw_user_session.cpp
@@ -75,7 +75,14 @@ function(generateOsqueryEvents)
         windows/etw/etw_controller.cpp
         windows/etw/etw_publisher.cpp
       )
-    endif()	
+    endif()
+
+  elseif(DEFINED PLATFORM_FREEBSD)
+    # FreeBSD event support is minimal - no platform-specific publishers yet
+    list(APPEND source_files
+      audit_flags.cpp
+      file_events_flags.cpp
+    )
   endif()
 
   add_osquery_library(osquery_events EXCLUDE_FROM_ALL
