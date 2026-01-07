@@ -3867,6 +3867,9 @@ function(generateAwsCCommon)
   elseif(PLATFORM_MACOS)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-c-common/macos/${TARGET_PROCESSOR}/include")
 
+  elseif(PLATFORM_FREEBSD)
+    set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-c-common/freebsd/${TARGET_PROCESSOR}/include")
+
   elseif(PLATFORM_WINDOWS)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-c-common/windows/${TARGET_PROCESSOR}/include")
   endif()
