@@ -31,7 +31,7 @@ namespace {
 #if defined(__APPLE__)
 const std::vector<std::string> kFirefoxPaths = {
     "/Library/Application Support/Firefox/Profiles/"};
-#elif defined(__linux__)
+#elif defined(__linux__) || defined(__FreeBSD__)
 const std::vector<std::string> kFirefoxPaths = {
     "/.mozilla/firefox/", "/snap/firefox/common/.mozilla/firefox/"};
 #elif defined(WIN32)
