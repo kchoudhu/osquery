@@ -3980,6 +3980,11 @@ function(generateAwsCCommon)
       rt
     )
 
+  elseif(PLATFORM_FREEBSD)
+    target_link_libraries(thirdparty_aws-c-common PUBLIC
+      m
+    )
+
   elseif(PLATFORM_MACOS)
     target_link_libraries(thirdparty_aws-c-common PUBLIC
       "-framework CoreFoundation"
