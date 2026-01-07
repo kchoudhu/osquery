@@ -2562,6 +2562,9 @@ function(generateAwsCppSdkCore)
   if(PLATFORM_LINUX)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-cpp-sdk-core/linux/${TARGET_PROCESSOR}")
 
+  elseif(PLATFORM_FREEBSD)
+    set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-cpp-sdk-core/freebsd/${TARGET_PROCESSOR}")
+
   elseif(PLATFORM_MACOS)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-cpp-sdk-core/macos/${TARGET_PROCESSOR}")
 
@@ -2797,6 +2800,9 @@ function(generateAwsCrtCpp)
 
   if(PLATFORM_LINUX)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-crt-cpp/linux/${TARGET_PROCESSOR}")
+
+  elseif(PLATFORM_FREEBSD)
+    set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-crt-cpp/freebsd/${TARGET_PROCESSOR}")
 
   elseif(PLATFORM_MACOS)
     set(config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/aws-crt-cpp/macos/${TARGET_PROCESSOR}")
