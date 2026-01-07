@@ -324,8 +324,9 @@ The basic scheduled query specification includes:
 The `platform` key can be:
 
 - `darwin` for macOS hosts
+- `freebsd` for FreeBSD hosts
 - `linux` for any RedHat or Debian-based hosts
-- `posix` for `darwin` and `linux` hosts
+- `posix` for `darwin`, `freebsd`, and `linux` hosts
 - `windows` for any Windows desktop or server hosts
 - `any` or `all` for all, alternatively no platform key selects all
 
