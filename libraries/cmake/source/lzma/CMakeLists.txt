@@ -124,6 +124,10 @@ function(lzmaMain)
     target_include_directories(thirdparty_lzma PRIVATE
       "${CMAKE_CURRENT_SOURCE_DIR}/config/linux/${TARGET_PROCESSOR}"
     )
+  elseif(DEFINED PLATFORM_FREEBSD)
+    target_include_directories(thirdparty_lzma PRIVATE
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/freebsd/${TARGET_PROCESSOR}"
+    )
   elseif(DEFINED PLATFORM_MACOS)
     target_include_directories(thirdparty_lzma PRIVATE
       "${CMAKE_CURRENT_SOURCE_DIR}/config/macos/${TARGET_PROCESSOR}"

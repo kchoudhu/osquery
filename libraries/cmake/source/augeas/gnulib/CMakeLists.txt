@@ -50,6 +50,21 @@ function(gnulibMain)
       )
     endif()
 
+  elseif(PLATFORM_FREEBSD)
+    target_sources(thirdparty_gnulib_library PRIVATE
+      "${library_root}/lib/vasnprintf.c"
+    )
+
+    if(TARGET_PROCESSOR STREQUAL "x86_64")
+      target_sources(thirdparty_gnulib_library PRIVATE
+        "${library_root}/lib/hash.c"
+        "${library_root}/lib/strstr.c"
+        "${library_root}/lib/fnmatch.c"
+        "${library_root}/lib/getopt1.c"
+        "${library_root}/lib/getopt.c"
+      )
+    endif()
+
   elseif(PLATFORM_MACOS)
     target_sources(thirdparty_gnulib_library PRIVATE
       "${library_root}/lib/vasnprintf.c"
@@ -83,6 +98,11 @@ function(gnulibMain)
   if(PLATFORM_LINUX)
     set(generated_include_headers_path
       "${CMAKE_CURRENT_SOURCE_DIR}/generated/linux/${TARGET_PROCESSOR}"
+    )
+
+  elseif(PLATFORM_FREEBSD)
+    set(generated_include_headers_path
+      "${CMAKE_CURRENT_SOURCE_DIR}/generated/freebsd/${TARGET_PROCESSOR}"
     )
 
   elseif(PLATFORM_WINDOWS)

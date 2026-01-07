@@ -85,6 +85,11 @@ function(libmagicMain)
     target_include_directories(thirdparty_libmagic PRIVATE
       "${CMAKE_CURRENT_SOURCE_DIR}/config/macos/${TARGET_PROCESSOR}"
     )
+
+  elseif(DEFINED PLATFORM_FREEBSD)
+    target_include_directories(thirdparty_libmagic PRIVATE
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/freebsd/${TARGET_PROCESSOR}"
+    )
   endif()
 
   target_include_directories(thirdparty_libmagic SYSTEM INTERFACE

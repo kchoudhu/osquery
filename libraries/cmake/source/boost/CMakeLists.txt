@@ -147,7 +147,7 @@ function(importBoostInterfaceLibraries)
   )
 
   # Additional settings for the libraries we just imported
-  if(PLATFORM_LINUX)
+  if(PLATFORM_LINUX OR PLATFORM_FREEBSD)
     target_compile_definitions(thirdparty_boost_uuid INTERFACE
       BOOST_UUID_RANDOM_PROVIDER_FORCE_POSIX
     )
@@ -734,7 +734,7 @@ function(generateBoostContext)
   message(STATUS "osquery: boost::context is using the ${context_backend} backend")
 
   if(context_backend STREQUAL "fcontext")
-    if(PLATFORM_LINUX)
+    if(PLATFORM_LINUX OR PLATFORM_FREEBSD)
       if(TARGET_PROCESSOR STREQUAL "x86_64")
         set(source_file_list
           "${library_root}/src/asm/jump_x86_64_sysv_elf_gas.S"

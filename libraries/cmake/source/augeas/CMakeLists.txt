@@ -13,6 +13,11 @@ function(augeasMain)
       "${CMAKE_CURRENT_SOURCE_DIR}/generated/linux/${TARGET_PROCESSOR}/config"
     )
 
+  elseif(PLATFORM_FREEBSD)
+    set(generated_include_headers_path
+      "${CMAKE_CURRENT_SOURCE_DIR}/generated/freebsd/${TARGET_PROCESSOR}/config"
+    )
+
   elseif(PLATFORM_WINDOWS)
     set(generated_include_headers_path
       "${CMAKE_CURRENT_SOURCE_DIR}/generated/windows/${TARGET_PROCESSOR}/config"

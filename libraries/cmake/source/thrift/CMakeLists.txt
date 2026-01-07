@@ -16,6 +16,9 @@ function(thriftMain)
 
   elseif(PLATFORM_MACOS)
     set(thrift_config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/macos/${TARGET_PROCESSOR}")
+
+  elseif(PLATFORM_FREEBSD)
+    set(thrift_config_path "${CMAKE_CURRENT_SOURCE_DIR}/config/freebsd/${TARGET_PROCESSOR}")
   endif()
 
   add_library(thirdparty_thrift_settings INTERFACE)

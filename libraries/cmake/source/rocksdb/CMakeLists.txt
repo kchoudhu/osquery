@@ -383,6 +383,32 @@ function(rocksdbMain)
       )
     endif()
 
+  elseif(PLATFORM_FREEBSD)
+    if(TARGET_PROCESSOR STREQUAL "x86_64")
+      target_compile_definitions(thirdparty_rocksdb
+        PUBLIC
+          ROCKSDB_SUPPORT_THREAD_LOCAL
+
+        PRIVATE
+          NPERF_CONTEXT
+          OS_FREEBSD
+          ROCKSDB_LIB_IO_POSIX
+          ROCKSDB_NO_DYNAMIC_EXTENSION
+          ROCKSDB_PLATFORM_POSIX
+          ROCKSDB_PTHREAD_ADAPTIVE_MUTEX
+      )
+
+    elseif(TARGET_PROCESSOR STREQUAL "aarch64")
+      target_compile_definitions(thirdparty_rocksdb PRIVATE
+        NIOSTATS_CONTEXT
+        NPERF_CONTEXT
+        OS_FREEBSD
+        ROCKSDB_LIB_IO_POSIX
+        ROCKSDB_NO_DYNAMIC_EXTENSION
+        ROCKSDB_PLATFORM_POSIX
+      )
+    endif()
+
   elseif(PLATFORM_MACOS)
     if(TARGET_PROCESSOR STREQUAL "x86_64")
       target_compile_definitions(thirdparty_rocksdb
@@ -443,7 +469,7 @@ function(rocksdbMain)
 
   set(library_list)
 
-  if(PLATFORM_LINUX)
+  if(PLATFORM_LINUX OR PLATFORM_FREEBSD)
     find_package(Threads REQUIRED)
     list(APPEND library_list
       Threads::Threads

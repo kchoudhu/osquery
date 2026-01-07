@@ -87,6 +87,10 @@ function(yaraMain)
       list(APPEND sources
         "${library_root}/proc/mach.c"
       )
+    elseif(PLATFORM_FREEBSD)
+      list(APPEND sources
+        "${library_root}/proc/freebsd.c"
+      )
     else()
       message(FATAL_ERROR "Unsupported posix platform")
     endif()
@@ -165,6 +169,16 @@ function(yaraMain)
         HAVE_MEMORY_H=1
         USE_LINUX_PROC
         _GNU_SOURCE
+      )
+
+    elseif(PLATFORM_FREEBSD)
+      target_compile_definitions(thirdparty_yara PRIVATE
+        HAVE_STDIO_H=1
+        HAVE_STRLCAT=1
+        HAVE_STRLCPY=1
+        YYTEXT_POINTER=1
+        USE_FREEBSD_PROC
+        _THREAD_SAFE
       )
 
     elseif(PLATFORM_MACOS)

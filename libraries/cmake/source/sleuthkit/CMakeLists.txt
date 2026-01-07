@@ -21,6 +21,11 @@ function(sleuthkitMain)
     set(sleuthkit_config_path
       "${CMAKE_CURRENT_SOURCE_DIR}/config/macos/${TARGET_PROCESSOR}"
     )
+
+  elseif(DEFINED PLATFORM_FREEBSD)
+    set(sleuthkit_config_path
+      "${CMAKE_CURRENT_SOURCE_DIR}/config/freebsd/${TARGET_PROCESSOR}"
+    )
   endif()
 
   add_library(thirdparty_sleuthkit_settings INTERFACE)

@@ -26,6 +26,15 @@ function(gflagsMain)
       SYSTEM INTERFACE
         "${CMAKE_CURRENT_SOURCE_DIR}/generated/linux/${TARGET_PROCESSOR}/public"
     )
+  elseif(DEFINED PLATFORM_FREEBSD)
+    target_include_directories(thirdparty_gflags
+      PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/generated/freebsd/${TARGET_PROCESSOR}/private"
+        "${CMAKE_CURRENT_SOURCE_DIR}/generated/freebsd/${TARGET_PROCESSOR}/public"
+
+      SYSTEM INTERFACE
+        "${CMAKE_CURRENT_SOURCE_DIR}/generated/freebsd/${TARGET_PROCESSOR}/public"
+    )
   elseif(DEFINED PLATFORM_WINDOWS)
     list(APPEND sources
       "${library_root}/src/windows_port.cc"
