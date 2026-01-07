@@ -273,6 +273,10 @@ function(setupBuildFlags)
       list(APPEND osquery_defines ${osquery_macos_common_defines})
 
     elseif(DEFINED PLATFORM_FREEBSD)
+      set(freebsd_common_compile_options
+        -Wno-enum-constexpr-conversion
+      )
+
       set(freebsd_cxx_link_options
         -lresolv
         -pthread
@@ -290,6 +294,12 @@ function(setupBuildFlags)
         OSQUERY_BUILD_DISTRO="11"
       )
 
+      target_compile_options(cxx_settings INTERFACE
+        ${freebsd_common_compile_options}
+      )
+      target_compile_options(c_settings INTERFACE
+        ${freebsd_common_compile_options}
+      )
       target_link_options(cxx_settings INTERFACE
         ${freebsd_cxx_link_options}
       )

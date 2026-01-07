@@ -35,6 +35,12 @@ function(librariesMain)
       -Oz
       -g0
     )
+
+    if(DEFINED PLATFORM_FREEBSD)
+      list(APPEND compile_options
+        -Wno-enum-constexpr-conversion
+      )
+    endif()
   endif()
 
   set(defines
