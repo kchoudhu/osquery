@@ -32,7 +32,7 @@ QueryData genGroups(QueryContext& context) {
       r["gid"] = BIGINT(gid);
       if (grp != nullptr) {
         r["gid_signed"] = INTEGER((int32_t)grp->gr_gid);
-        r["groupname"] = TEXT(grp->gr_name);
+        r["groupname"] = SQL_TEXT(grp->gr_name);
       }
       results.push_back(r);
     }
@@ -46,7 +46,7 @@ QueryData genGroups(QueryContext& context) {
         Row r;
         r["gid"] = INTEGER(grp->gr_gid);
         r["gid_signed"] = INTEGER((int32_t)grp->gr_gid);
-        r["groupname"] = TEXT(grp->gr_name);
+        r["groupname"] = SQL_TEXT(grp->gr_name);
         results.push_back(r);
         groups_in.insert(grp->gr_gid);
       }

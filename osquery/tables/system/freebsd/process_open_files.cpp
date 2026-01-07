@@ -45,9 +45,9 @@ void genDescriptors(struct procstat* pstat,
 
     r["pid"] = INTEGER(proc->ki_pid);
     if (file->fs_path == nullptr) {
-      r["path"] = TEXT("");
+      r["path"] = SQL_TEXT("");
     } else {
-      r["path"] = TEXT(file->fs_path);
+      r["path"] = SQL_TEXT(file->fs_path);
     }
     r["fd"] = BIGINT(file->fs_fd);
 
