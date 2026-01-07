@@ -310,7 +310,7 @@ typedef uint64_t uintmax_t;
 /* #undef ARCHIVE_XATTR_DARWIN */
 
 /* FreeBSD xattr support */
-/* #undef ARCHIVE_XATTR_FREEBSD */
+#define ARCHIVE_XATTR_FREEBSD 1
 
 /* Linux xattr support */
 /* #undef ARCHIVE_XATTR_LINUX */
@@ -1052,7 +1052,7 @@ typedef uint64_t uintmax_t;
 /* #undef HAVE_SYS_EA_H */
 
 /* Define to 1 if you have the <sys/extattr.h> header file. */
-/* #undef HAVE_SYS_EXTATTR_H */
+#define HAVE_SYS_EXTATTR_H 1
 
 /* Define to 1 if you have the <sys/ioctl.h> header file. */
 #define HAVE_SYS_IOCTL_H 1
@@ -1111,7 +1111,7 @@ typedef uint64_t uintmax_t;
 #define HAVE_SYS_WAIT_H 1
 
 /* Define to 1 if you have the <sys/xattr.h> header file. */
-#define HAVE_SYS_XATTR_H 1
+/* #undef HAVE_SYS_XATTR_H */
 
 /* Define to 1 if you have the `timegm' function. */
 #define HAVE_TIMEGM 1
