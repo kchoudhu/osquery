@@ -65,7 +65,7 @@
 /* #undef BISON_USE_PARSER_H_EXTENSION */
 
 /* Define to 1 if strerror_r returns char *. */
-#define STRERROR_R_CHAR_P 1
+/* #undef STRERROR_R_CHAR_P */
 
 
 /************************** HEADER FILES *************************/
@@ -142,7 +142,7 @@
 #define HAVE_GETHOSTBYNAME 1
 
 /* Define to 1 if you have the `gethostbyname_r' function. */
-#define HAVE_GETHOSTBYNAME_R 1
+/* #undef HAVE_GETHOSTBYNAME_R */
 
 /* Define to 1 if you have the `strerror_r' function. */
 #define HAVE_STRERROR_R 1
@@ -155,6 +155,6 @@
 
 
 /* Define to 1 if strerror_r returns char *. */
-#define STRERROR_R_CHAR_P 1
+/* #undef STRERROR_R_CHAR_P */
 
 #endif

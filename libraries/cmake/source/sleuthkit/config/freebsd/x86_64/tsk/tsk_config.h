@@ -50,7 +50,7 @@
 #define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have the `ishexnumber' function. */
-/* #undef HAVE_ISHEXNUMBER */
+#define HAVE_ISHEXNUMBER 1
 
 /* Define to 1 if you have the `afflib' library (-lafflib). */
 /* #undef HAVE_LIBAFFLIB */
@@ -68,10 +68,10 @@
 /* #undef HAVE_LIBOPENSSL */
 
 /* Define to 1 if you have the `sqlite3' library (-lsqlite3). */
-/* #undef HAVE_LIBSQLITE3 */
+#define HAVE_LIBSQLITE3 1
 
 /* Define to 1 if you have the `stdc++' library (-lstdc++). */
-/* #undef HAVE_LIBSTDC__ */
+#define HAVE_LIBSTDC__ 1
 
 /* Define to 1 if you have the `vhdi' library (-lvhdi). */
 /* #undef HAVE_LIBVHDI */
@@ -99,7 +99,7 @@
 /* #undef HAVE_MAP */
 
 /* Define to 1 if you have the <memory.h> header file. */
-#define HAVE_MEMORY_H 1
+/* #undef HAVE_MEMORY_H */
 
 /* Define if you have POSIX threads libraries and header files. */
 #define HAVE_PTHREAD 1
@@ -111,7 +111,7 @@
 /* #undef HAVE_SET */
 
 /* Define to 1 if you have the <sqlite3.h> header file. */
-/* #undef HAVE_SQLITE3_H */
+#define HAVE_SQLITE3_H 1
 
 /* Define to 1 if you have the <stack> header file. */
 /* #undef HAVE_STACK */
@@ -138,10 +138,10 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have the `strlcat' function. */
-/* #undef HAVE_STRLCAT */
+#define HAVE_STRLCAT 1
 
 /* Define to 1 if you have the `strlcpy' function. */
-/* #undef HAVE_STRLCPY */
+#define HAVE_STRLCPY 1
 
 /* Define to 1 if you have the <sys/param.h> header file. */
 #define HAVE_SYS_PARAM_H 1
@@ -193,7 +193,7 @@
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
-#define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
+/* #undef LSTAT_FOLLOWS_SLASHED_SYMLINK */
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
@@ -214,7 +214,7 @@
 #define PACKAGE_TARNAME "sleuthkit"
 
 /* Define to the home page for this package. */
-/* #undef PACKAGE_URL */
+#define PACKAGE_URL ""
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "4.11.0"
