@@ -19,12 +19,7 @@
 /* Define to the number of bits in type 'wint_t'. */
 /* #undef BITSIZEOF_WINT_T */
 
-/* Define to one of `_getb67', `GETB67', `getb67' for Cray-2 and Cray-YMP
-   systems. This function is required for `alloca.c' support on those systems.
-   */
-/* #undef CRAY_STACKSEG_END */
-
-/* Define to 1 if using `alloca.c'. */
+/* Define to 1 if using 'alloca.c'. */
 /* #undef C_ALLOCA */
 
 /* Define to 1 if the C locale may have encoding errors. */
@@ -64,21 +59,21 @@
 
 /* Define to 1 if mkdir mistakenly creates a directory given with a trailing
    dot component. */
-/* #undef FUNC_MKDIR_DOT_BUG */
+#define FUNC_MKDIR_DOT_BUG 1
 
 /* Define to 1 if nl_langinfo (YESEXPR) returns a non-empty string. */
 #define FUNC_NL_LANGINFO_YESEXPR_WORKS 1
 
 /* Define to 1 if realpath() can malloc memory, always gives an absolute path,
    and handles trailing slash correctly. */
-#define FUNC_REALPATH_WORKS 1
+/* #undef FUNC_REALPATH_WORKS */
 
 /* Define if gettimeofday clobbers the localtime buffer. */
-/* #undef GETTIMEOFDAY_CLOBBERS_LOCALTIME */
+#define GETTIMEOFDAY_CLOBBERS_LOCALTIME 1
 
 /* Define this to 'void' or 'struct timezone' to match the system's
    declaration of the second argument to gettimeofday. */
-#define GETTIMEOFDAY_TIMEZONE struct timezone
+#define GETTIMEOFDAY_TIMEZONE void
 
 /* Define to a C preprocessor expression that evaluates to 1 or 0, depending
    whether the gnulib module canonicalize-lgpl shall be considered present. */
@@ -321,12 +316,11 @@
    may be supplied by this distribution. */
 #define HAVE_ALLOCA 1
 
-/* Define to 1 if you have <alloca.h> and it should be used (not on Ultrix).
-   */
+/* Define to 1 if <alloca.h> works. */
 #define HAVE_ALLOCA_H 1
 
 /* Define to 1 if you have the <argz.h> header file. */
-#define HAVE_ARGZ_H 1
+/* #undef HAVE_ARGZ_H */
 
 /* Define to 1 if you have the <arpa/inet.h> header file. */
 #define HAVE_ARPA_INET_H 1
@@ -338,25 +332,25 @@
 #define HAVE_BTOWC 1
 
 /* Define to 1 if nanosleep mishandles large arguments. */
-#define HAVE_BUG_BIG_NANOSLEEP 1
+/* #undef HAVE_BUG_BIG_NANOSLEEP */
 
 /* Define to 1 if you have the `canonicalize_file_name' function. */
-#define HAVE_CANONICALIZE_FILE_NAME 1
+/* #undef HAVE_CANONICALIZE_FILE_NAME */
 
 /* Define to 1 if you have the `catgets' function. */
 #define HAVE_CATGETS 1
 
 /* Define to 1 if you have the Mac OS X function CFLocaleCopyCurrent in the
    CoreFoundation framework. */
-/* #undef HAVE_CFLOCALECOPYCURRENT */
+#define HAVE_CFLOCALECOPYCURRENT 1
 
 /* Define to 1 if you have the Mac OS X function
    CFLocaleCopyPreferredLanguages in the CoreFoundation framework. */
-/* #undef HAVE_CFLOCALECOPYPREFERREDLANGUAGES */
+#define HAVE_CFLOCALECOPYPREFERREDLANGUAGES 1
 
 /* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
    the CoreFoundation framework. */
-/* #undef HAVE_CFPREFERENCESCOPYAPPVALUE */
+#define HAVE_CFPREFERENCESCOPYAPPVALUE 1
 
 /* Define to 1 if you have the `chsize' function. */
 /* #undef HAVE_CHSIZE */
@@ -370,7 +364,7 @@
 
 /* Define to 1 if you have the declaration of `getc_unlocked', and to 0 if you
    don't. */
-/* #undef HAVE_DECL_GETC_UNLOCKED */
+#define HAVE_DECL_GETC_UNLOCKED 1
 
 /* Define to 1 if you have the declaration of `getdelim', and to 0 if you
    don't. */
@@ -446,7 +440,7 @@
 
 /* Define to 1 if you have the declaration of `_putenv', and to 0 if you
    don't. */
-/* #undef HAVE_DECL__PUTENV */
+#define HAVE_DECL__PUTENV 0
 
 /* Define to 1 if you have the declaration of `_snprintf', and to 0 if you
    don't. */
@@ -462,10 +456,10 @@
 #define HAVE_DUPLOCALE 1
 
 /* Define if you have the declaration of environ. */
-#define HAVE_ENVIRON_DECL 1
+/* #undef HAVE_ENVIRON_DECL */
 
 /* Define to 1 if the system has the type `error_t'. */
-#define HAVE_ERROR_T 1
+/* #undef HAVE_ERROR_T */
 
 /* Define if the locale_t type contains insufficient information, as on
    OpenBSD. */
@@ -475,10 +469,10 @@
 #define HAVE_FCNTL 1
 
 /* Define to 1 if you have the <features.h> header file. */
-#define HAVE_FEATURES_H 1
+/* #undef HAVE_FEATURES_H */
 
 /* Define to 1 if you have the `flockfile' function. */
-/* #undef HAVE_FLOCKFILE */
+#define HAVE_FLOCKFILE 1
 
 /* Define to 1 if you have the `fnmatch' function. */
 #define HAVE_FNMATCH 1
@@ -496,7 +490,7 @@
 #define HAVE_FTRUNCATE 1
 
 /* Define to 1 if you have the `funlockfile' function. */
-/* #undef HAVE_FUNLOCKFILE */
+#define HAVE_FUNLOCKFILE 1
 
 /* Define to 1 if you have the `getcwd' function. */
 #define HAVE_GETCWD 1
@@ -560,7 +554,7 @@
 #define HAVE_LC_MESSAGES 1
 
 /* Define to 1 if you have the <libintl.h> header file. */
-#define HAVE_LIBINTL_H 1
+/* #undef HAVE_LIBINTL_H */
 
 /* Define to 1 if you have the <limits.h> header file. */
 #define HAVE_LIMITS_H 1
@@ -572,7 +566,7 @@
 #define HAVE_LSTAT 1
 
 /* Define to 1 if you have the <malloc.h> header file. */
-#define HAVE_MALLOC_H 1
+/* #undef HAVE_MALLOC_H */
 
 /* Define if the 'malloc' function is POSIX compliant. */
 #define HAVE_MALLOC_POSIX 1
@@ -596,11 +590,8 @@
 /* Define to 1 if you have the `mbtowc' function. */
 #define HAVE_MBTOWC 1
 
-/* Define to 1 if you have the <memory.h> header file. */
-#define HAVE_MEMORY_H 1
-
 /* Define to 1 if you have the `mempcpy' function. */
-#define HAVE_MEMPCPY 1
+/* #undef HAVE_MEMPCPY */
 
 /* Define to 1 if you have the `mkstemp' function. */
 #define HAVE_MKSTEMP 1
@@ -648,16 +639,16 @@
 
 /* Define if the 'pthread_rwlock_rdlock' function prefers a writer to a
    reader. */
-/* #undef HAVE_PTHREAD_RWLOCK_RDLOCK_PREFER_WRITER */
+#define HAVE_PTHREAD_RWLOCK_RDLOCK_PREFER_WRITER 1
 
 /* Define to 1 if the pthread_sigmask function can be used (despite bugs). */
-/* #undef HAVE_PTHREAD_SIGMASK */
+#define HAVE_PTHREAD_SIGMASK 1
 
 /* Define to 1 if you have the `raise' function. */
 #define HAVE_RAISE 1
 
 /* Define to 1 if you have the `rawmemchr' function. */
-#define HAVE_RAWMEMCHR 1
+/* #undef HAVE_RAWMEMCHR */
 
 /* Define to 1 if you have the `readlink' function. */
 #define HAVE_READLINK 1
@@ -722,7 +713,7 @@
 /* Define if the return value of the snprintf function is the number of of
    bytes (excluding the terminating NUL) that would have been produced if the
    buffer had been large enough. */
-#define HAVE_SNPRINTF_RETVAL_C99 1
+/* #undef HAVE_SNPRINTF_RETVAL_C99 */
 
 /* Define if the locale_t type is as on Solaris 11.4. */
 /* #undef HAVE_SOLARIS114_LOCALES */
@@ -734,6 +725,9 @@
    uintmax_t. */
 #define HAVE_STDINT_H_WITH_UINTMAX 1
 
+/* Define to 1 if you have the <stdio.h> header file. */
+#define HAVE_STDIO_H 1
+
 /* Define to 1 if you have the <stdlib.h> header file. */
 #define HAVE_STDLIB_H 1
 
@@ -744,7 +738,7 @@
 #define HAVE_STPNCPY 1
 
 /* Define to 1 if you have the `strchrnul' function. */
-#define HAVE_STRCHRNUL 1
+/* #undef HAVE_STRCHRNUL */
 
 /* Define to 1 if you have the `strerror_r' function. */
 #define HAVE_STRERROR_R 1
@@ -777,19 +771,19 @@
 /* #undef HAVE_STRUCT_STAT_ST_ATIMENSEC */
 
 /* Define to 1 if `st_atimespec.tv_nsec' is a member of `struct stat'. */
-/* #undef HAVE_STRUCT_STAT_ST_ATIMESPEC_TV_NSEC */
+#define HAVE_STRUCT_STAT_ST_ATIMESPEC_TV_NSEC 1
 
 /* Define to 1 if `st_atim.st__tim.tv_nsec' is a member of `struct stat'. */
 /* #undef HAVE_STRUCT_STAT_ST_ATIM_ST__TIM_TV_NSEC */
 
 /* Define to 1 if `st_atim.tv_nsec' is a member of `struct stat'. */
-#define HAVE_STRUCT_STAT_ST_ATIM_TV_NSEC 1
+/* #undef HAVE_STRUCT_STAT_ST_ATIM_TV_NSEC */
 
 /* Define to 1 if `st_birthtimensec' is a member of `struct stat'. */
 /* #undef HAVE_STRUCT_STAT_ST_BIRTHTIMENSEC */
 
 /* Define to 1 if `st_birthtimespec.tv_nsec' is a member of `struct stat'. */
-/* #undef HAVE_STRUCT_STAT_ST_BIRTHTIMESPEC_TV_NSEC */
+#define HAVE_STRUCT_STAT_ST_BIRTHTIMESPEC_TV_NSEC 1
 
 /* Define to 1 if `st_birthtim.tv_nsec' is a member of `struct stat'. */
 /* #undef HAVE_STRUCT_STAT_ST_BIRTHTIM_TV_NSEC */
@@ -897,16 +891,16 @@
 #define HAVE_WMEMCPY 1
 
 /* Define to 1 if you have the `wmempcpy' function. */
-#define HAVE_WMEMPCPY 1
+/* #undef HAVE_WMEMPCPY */
 
 /* This value is set to 1 to indicate that the system argz facility works */
-#define HAVE_WORKING_ARGZ 1
+/* #undef HAVE_WORKING_ARGZ */
 
 /* Define to 1 if O_NOATIME works. */
-#define HAVE_WORKING_O_NOATIME 1
+#define HAVE_WORKING_O_NOATIME 0
 
 /* Define to 1 if O_NOFOLLOW works. */
-#define HAVE_WORKING_O_NOFOLLOW 1
+#define HAVE_WORKING_O_NOFOLLOW 0
 
 /* Define if the uselocale function exists any may safely be called. */
 #define HAVE_WORKING_USELOCALE 1
@@ -937,17 +931,17 @@
 #define HAVE___INLINE 1
 
 /* Define to 1 if you have the `__xpg_strerror_r' function. */
-#define HAVE___XPG_STRERROR_R 1
+/* #undef HAVE___XPG_STRERROR_R */
 
 /* Define to 1 if 'lstat' dereferences a symlink specified with a trailing
    slash. */
-#define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
+/* #undef LSTAT_FOLLOWS_SLASHED_SYMLINK */
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
 
 /* If malloc(0) is != NULL, define this to 1. Otherwise define this to 0. */
-#define MALLOC_0_IS_NONNULL 1
+#define MALLOC_0_IS_NONNULL 0
 
 /* Define to a substitute value for mmap()'s MAP_ANONYMOUS flag. */
 /* #undef MAP_ANONYMOUS */
@@ -1003,7 +997,7 @@
 
 /* Define to the type that is the result of default argument promotions of
    type mode_t. */
-#define PROMOTED_MODE_T mode_t
+#define PROMOTED_MODE_T int
 
 /* Define if the pthread_in_use() detection is hard. */
 /* #undef PTHREAD_IN_USE_DETECTION_HARD */
@@ -1023,17 +1017,17 @@
 /* #undef PTRDIFF_T_SUFFIX */
 
 /* Define to 1 if readlink fails to recognize a trailing slash. */
-/* #undef READLINK_TRAILING_SLASH_BUG */
+#define READLINK_TRAILING_SLASH_BUG 1
 
 /* Define to 1 if stat needs help when passed a file name with a trailing
    slash */
-/* #undef REPLACE_FUNC_STAT_FILE */
+#define REPLACE_FUNC_STAT_FILE 1
 
 /* Define if nl_langinfo exists but is overridden by gnulib. */
 #define REPLACE_NL_LANGINFO 1
 
 /* Define to 1 if strerror(0) does not return a message implying success. */
-/* #undef REPLACE_STRERROR_0 */
+#define REPLACE_STRERROR_0 1
 
 /* Define if vasnprintf exists but is overridden by gnulib. */
 /* #undef REPLACE_VASNPRINTF */
@@ -1063,19 +1057,21 @@
 /* Define to 1 if the `S_IS*' macros in <sys/stat.h> do not work properly. */
 /* #undef STAT_MACROS_BROKEN */
 
-/* Define to 1 if you have the ANSI C header files. */
+/* Define to 1 if all of the C90 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
 #define STDC_HEADERS 1
 
 /* Define to 1 if the type of the st_atim member of a struct stat is struct
    timespec. */
-#define TYPEOF_STRUCT_STAT_ST_ATIM_IS_STRUCT_TIMESPEC 1
+/* #undef TYPEOF_STRUCT_STAT_ST_ATIM_IS_STRUCT_TIMESPEC */
 
 /* Define if the POSIX multithreading library can be used. */
 #define USE_POSIX_THREADS 1
 
 /* Define if references to the POSIX multithreading library should be made
    weak. */
-#define USE_POSIX_THREADS_WEAK 1
+/* #undef USE_POSIX_THREADS_WEAK */
 
 /* Define if the GNU Pth multithreading library can be used. */
 /* #undef USE_PTH_THREADS */
@@ -1198,10 +1194,7 @@
 
 /* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
    `char[]'. */
-/* #undef YYTEXT_POINTER */
-
-/* Enable large inode numbers on Mac OS X 10.5. */
-#define _DARWIN_USE_64_BIT_INODE 1
+#define YYTEXT_POINTER 1
 
 /* Number of bits in a file offset, on hosts where this is settable. */
 /* #undef _FILE_OFFSET_BITS */
@@ -1261,7 +1254,7 @@
 
 /* Define to rpl_ if the getopt replacement functions and variables should be
    used. */
-/* #undef __GETOPT_PREFIX */
+#define __GETOPT_PREFIX rpl_
 
 /* Define to 1 if the system <stdint.h> predates C++11. */
 /* #undef __STDC_CONSTANT_MACROS */
@@ -1270,7 +1263,7 @@
 /* #undef __STDC_LIMIT_MACROS */
 
 /* Define so that glibc/gnulib argp.h does not typedef error_t. */
-/* #undef __error_t_defined */
+#define __error_t_defined 1
 
 /* The _GL_ASYNC_SAFE marker should be attached to functions that are
    signal handlers (for signals other than SIGABRT, SIGPIPE) or can be
@@ -1300,7 +1293,7 @@
 
 
 /* Define to a type to use for 'error_t' if it is not otherwise available. */
-/* #undef error_t */
+#define error_t int
 
 /* Please see the Gnulib manual for how to use these macros.
 
@@ -1446,7 +1439,7 @@
 /* Define to the type of st_nlink in struct stat, or a supertype. */
 /* #undef nlink_t */
 
-/* Define to `int' if <sys/types.h> does not define. */
+/* Define as a signed integer type capable of holding a process identifier. */
 /* #undef pid_t */
 
 /* Define as the type of the result of subtracting two pointers, if the system

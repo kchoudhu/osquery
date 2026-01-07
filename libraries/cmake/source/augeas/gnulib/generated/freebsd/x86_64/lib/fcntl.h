@@ -557,7 +557,7 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 /* Declare overridden functions.  */
 
 #if IN_AUGEAS_GNULIB_TESTS
-# if 1
+# if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef fcntl
 #   define fcntl rpl_fcntl
@@ -580,7 +580,7 @@ _GL_WARN_ON_USE (fcntl, "fcntl is not always POSIX compliant - "
 #endif
 
 #if IN_AUGEAS_GNULIB_TESTS
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef open
 #   define open rpl_open

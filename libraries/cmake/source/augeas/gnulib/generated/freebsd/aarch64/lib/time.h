@@ -679,8 +679,8 @@ _GL_CXXALIASWARN (gmtime_r);
 /* Convert TIMER to RESULT, assuming local time and UTC respectively.  See
    <http://www.opengroup.org/susv3xsh/localtime.html> and
    <http://www.opengroup.org/susv3xsh/gmtime.html>.  */
-# if 0 || 0
-#  if 0
+# if 0 || 1
+#  if 1
 #   if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #    undef localtime
 #    define localtime rpl_localtime
@@ -694,8 +694,8 @@ _GL_CXXALIAS_SYS (localtime, struct tm *, (time_t const *__timer));
 _GL_CXXALIASWARN (localtime);
 # endif
 
-# if 0 || 0
-#  if 0
+# if 0 || 1
+#  if 1
 #   if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #    undef gmtime
 #    define gmtime rpl_gmtime

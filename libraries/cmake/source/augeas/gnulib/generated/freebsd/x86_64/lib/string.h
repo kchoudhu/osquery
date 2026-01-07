@@ -672,7 +672,7 @@ _GL_WARN_ON_USE (memmem, "memmem is unportable and often quadratic - "
 /* Copy N bytes of SRC to DEST, return pointer to bytes after the
    last written byte.  */
 #if 1
-# if ! 1
+# if ! 0
 _GL_FUNCDECL_SYS (mempcpy, void *,
                   (void *restrict __dest, void const *restrict __src,
                    size_t __n)
@@ -722,7 +722,7 @@ _GL_WARN_ON_USE (memrchr, "memrchr is unportable - "
    memchr(S,C,N), at the expense of undefined behavior if C does not
    occur within N bytes.  */
 #if 1
-# if ! 1
+# if ! 0
 _GL_FUNCDECL_SYS (rawmemchr, void *, (void const *__s, int __c_in)
                                      _GL_ATTRIBUTE_PURE
                                      _GL_ARG_NONNULL ((1)));
@@ -823,7 +823,7 @@ _GL_FUNCDECL_RPL (strchrnul, char *, (const char *__s, int __c_in)
 _GL_CXXALIAS_RPL (strchrnul, char *,
                   (const char *str, int ch));
 # else
-#  if ! 1
+#  if ! 0
 _GL_FUNCDECL_SYS (strchrnul, char *, (char const *__s, int __c_in)
                                      _GL_ATTRIBUTE_PURE
                                      _GL_ARG_NONNULL ((1)));

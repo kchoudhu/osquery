@@ -1018,7 +1018,7 @@ _GL_WARN_ON_USE (lchmod, "lchmod is unportable - "
 #   define lstat stat
 #  endif
 _GL_CXXALIAS_RPL_1 (lstat, stat, int, (const char *name, struct stat *buf));
-# elif 0
+# elif 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef lstat
 #   define lstat rpl_lstat
@@ -1044,7 +1044,7 @@ _GL_WARN_ON_USE (lstat, "lstat is unportable - "
 #endif
 
 
-#if 0
+#if 1
 # if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #  undef mkdir
 #  define mkdir rpl_mkdir
@@ -1183,7 +1183,7 @@ _GL_WARN_ON_USE (mknodat, "mknodat is not portable - "
 
 
 #if 1
-# if 0
+# if 1
 #  if !0
     /* We can't use the object-like #define stat rpl_stat, because of
        struct stat.  This means that rpl_stat will not be used if the user

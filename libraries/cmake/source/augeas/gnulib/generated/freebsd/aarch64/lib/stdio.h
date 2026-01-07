@@ -1151,7 +1151,7 @@ _GL_CXXALIASWARN (getchar);
    bytes of space.  It is realloc'd as necessary.
    Return the number of bytes read and stored at *LINEPTR (not including the
    NUL terminator), or -1 on error or EOF.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef getdelim
 #   define getdelim rpl_getdelim
@@ -1190,7 +1190,7 @@ _GL_WARN_ON_USE (getdelim, "getdelim is unportable - "
    bytes of space.  It is realloc'd as necessary.
    Return the number of bytes read and stored at *LINEPTR (not including the
    NUL terminator), or -1 on error or EOF.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef getline
 #   define getline rpl_getline
@@ -1297,7 +1297,7 @@ _GL_WARN_ON_USE (pclose, "pclose is unportable - "
 /* Print a message to standard error, describing the value of ERRNO,
    (if STRING is not NULL and not empty) prefixed with STRING and ": ",
    and terminated with a newline.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define perror rpl_perror
 #  endif

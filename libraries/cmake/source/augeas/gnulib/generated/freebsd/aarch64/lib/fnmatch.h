@@ -1,12 +1,14 @@
 /* DO NOT EDIT! GENERATED AUTOMATICALLY! */
-/* Like <fcntl.h>, but with non-working flags defined to 0.
+/* Substitute for and wrapper around <fnmatch.h>.
+   Copyright (C) 1991-1993, 1996-1999, 2001-2003, 2005, 2007, 2009-2019 Free
+   Software Foundation, Inc.
 
-   Copyright (C) 2006-2019 Free Software Foundation, Inc.
+   This file is part of the GNU C Library.
 
-   This program is free software: you can redistribute it and/or modify
+   This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU Lesser General Public License as published by
-   the Free Software Foundation; either version 2.1 of the License, or
-   (at your option) any later version.
+   the Free Software Foundation; either version 2.1, or (at your option)
+   any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -14,65 +16,22 @@
    GNU Lesser General Public License for more details.
 
    You should have received a copy of the GNU Lesser General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+   along with this program; if not, see <https://www.gnu.org/licenses/>.  */
 
-/* written by Paul Eggert */
+#ifndef _GL_FNMATCH_H
 
 #if __GNUC__ >= 3
 #pragma GCC system_header
 #endif
 
 
-#if defined __need_system_fcntl_h
-/* Special invocation convention.  */
-
-/* Needed before <sys/stat.h>.
-   May also define off_t to a 64-bit type on native Windows.  */
-#include <sys/types.h>
-/* On some systems other than glibc, <sys/stat.h> is a prerequisite of
-   <fcntl.h>.  On glibc systems, we would like to avoid namespace pollution.
-   But on glibc systems, <fcntl.h> includes <sys/stat.h> inside an
-   extern "C" { ... } block, which leads to errors in C++ mode with the
-   overridden <sys/stat.h> from gnulib.  These errors are known to be gone
-   with g++ version >= 4.3.  */
-#if !(defined __GLIBC__ || defined __UCLIBC__) || (defined __cplusplus && defined GNULIB_NAMESPACE && (defined __ICC || !(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))))
-# include <sys/stat.h>
-#endif
-#include_next <fcntl.h>
-
-#else
-/* Normal invocation convention.  */
-
-#ifndef _GL_FCNTL_H
-
-/* Needed before <sys/stat.h>.
-   May also define off_t to a 64-bit type on native Windows.  */
-#include <sys/types.h>
-/* On some systems other than glibc, <sys/stat.h> is a prerequisite of
-   <fcntl.h>.  On glibc systems, we would like to avoid namespace pollution.
-   But on glibc systems, <fcntl.h> includes <sys/stat.h> inside an
-   extern "C" { ... } block, which leads to errors in C++ mode with the
-   overridden <sys/stat.h> from gnulib.  These errors are known to be gone
-   with g++ version >= 4.3.  */
-#if !(defined __GLIBC__ || defined __UCLIBC__) || (defined __cplusplus && defined GNULIB_NAMESPACE && (defined __ICC || !(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))))
-# include <sys/stat.h>
-#endif
 /* The include_next requires a split double-inclusion guard.  */
-#include_next <fcntl.h>
-
-#ifndef _GL_FCNTL_H
-#define _GL_FCNTL_H
-
-#ifndef __GLIBC__ /* Avoid namespace pollution on glibc systems.  */
-# include <unistd.h>
+#if 1 && !1
+# include_next <fnmatch.h>
 #endif
 
-/* Native Windows platforms declare open(), creat() in <io.h>.  */
-#if (IN_AUGEAS_GNULIB_TESTS || defined GNULIB_POSIXCHECK) \
-    && (defined _WIN32 && ! defined __CYGWIN__)
-# include <io.h>
-#endif
-
+#ifndef _GL_FNMATCH_H
+#define _GL_FNMATCH_H
 
 /* The definitions of _GL_FUNCDECL_RPL etc. are copied here.  */
 /* C++ compatible function declaration macros.
@@ -553,288 +512,73 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 # endif
 #endif
 
+#if !1 || 1
 
-/* Declare overridden functions.  */
+/* We #undef these before defining them because some losing systems
+   (HP-UX A.08.07 for example) define these in <unistd.h>.  */
+#undef  FNM_PATHNAME
+#undef  FNM_NOESCAPE
+#undef  FNM_PERIOD
 
-#if IN_AUGEAS_GNULIB_TESTS
-# if 0
+/* Bits set in the FLAGS argument to 'fnmatch'.  */
+#define FNM_PATHNAME    (1 << 0) /* No wildcard can ever match '/'.  */
+#define FNM_NOESCAPE    (1 << 1) /* Backslashes don't quote special chars.  */
+#define FNM_PERIOD      (1 << 2) /* Leading '.' is matched only explicitly.  */
+
+#if !defined _POSIX_C_SOURCE || _POSIX_C_SOURCE < 2 || defined _GNU_SOURCE
+# define FNM_FILE_NAME   FNM_PATHNAME   /* Preferred GNU name.  */
+# define FNM_LEADING_DIR (1 << 3)       /* Ignore '/...' after a match.  */
+# define FNM_CASEFOLD    (1 << 4)       /* Compare without regard to case.  */
+# define FNM_EXTMATCH    (1 << 5)       /* Use ksh-like extended matching. */
+#endif
+
+/* Value returned by 'fnmatch' if STRING does not match PATTERN.  */
+#define FNM_NOMATCH     1
+
+/* This value is returned if the implementation does not support
+   'fnmatch'.  Since this is not the case here it will never be
+   returned but the conformance test suites still require the symbol
+   to be defined.  */
+#ifdef _XOPEN_SOURCE
+# define FNM_NOSYS      (-1)
+#endif
+
+#endif
+
+
+#if 1
+/* Match NAME against the file name pattern PATTERN,
+   returning zero if it matches, FNM_NOMATCH if not.  */
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef fcntl
-#   define fcntl rpl_fcntl
+#   define fnmatch rpl_fnmatch
 #  endif
-_GL_FUNCDECL_RPL (fcntl, int, (int fd, int action, ...));
-_GL_CXXALIAS_RPL (fcntl, int, (int fd, int action, ...));
+_GL_FUNCDECL_RPL (fnmatch, int,
+                  (const char *pattern, const char *name, int flags)
+                  _GL_ARG_NONNULL ((1, 2)));
+_GL_CXXALIAS_RPL (fnmatch, int,
+                  (const char *pattern, const char *name, int flags));
 # else
 #  if !1
-_GL_FUNCDECL_SYS (fcntl, int, (int fd, int action, ...));
+_GL_FUNCDECL_SYS (fnmatch, int,
+                  (const char *pattern, const char *name, int flags)
+                  _GL_ARG_NONNULL ((1, 2)));
 #  endif
-_GL_CXXALIAS_SYS (fcntl, int, (int fd, int action, ...));
+_GL_CXXALIAS_SYS (fnmatch, int,
+                  (const char *pattern, const char *name, int flags));
 # endif
-_GL_CXXALIASWARN (fcntl);
-#elif defined GNULIB_POSIXCHECK
-# undef fcntl
-# if HAVE_RAW_DECL_FCNTL
-_GL_WARN_ON_USE (fcntl, "fcntl is not always POSIX compliant - "
-                 "use gnulib module fcntl for portability");
-# endif
-#endif
-
-#if IN_AUGEAS_GNULIB_TESTS
-# if 0
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef open
-#   define open rpl_open
-#  endif
-_GL_FUNCDECL_RPL (open, int, (const char *filename, int flags, ...)
-                             _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (open, int, (const char *filename, int flags, ...));
-# else
-_GL_CXXALIAS_SYS (open, int, (const char *filename, int flags, ...));
-# endif
-/* On HP-UX 11, in C++ mode, open() is defined as an inline function with a
-   default argument.  _GL_CXXALIASWARN does not work in this case.  */
-# if !defined __hpux
-_GL_CXXALIASWARN (open);
+# if !GNULIB_FNMATCH_GNU
+_GL_CXXALIASWARN (fnmatch);
 # endif
 #elif defined GNULIB_POSIXCHECK
-# undef open
-/* Assume open is always declared.  */
-_GL_WARN_ON_USE (open, "open is not always POSIX compliant - "
-                 "use gnulib module open for portability");
-#endif
-
-#if 0
-# if 0
-#  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
-#   undef openat
-#   define openat rpl_openat
-#  endif
-_GL_FUNCDECL_RPL (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...)
-                  _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...));
-# else
-#  if !1
-_GL_FUNCDECL_SYS (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...)
-                  _GL_ARG_NONNULL ((2)));
-#  endif
-_GL_CXXALIAS_SYS (openat, int,
-                  (int fd, char const *file, int flags, /* mode_t mode */ ...));
-# endif
-_GL_CXXALIASWARN (openat);
-#elif defined GNULIB_POSIXCHECK
-# undef openat
-# if HAVE_RAW_DECL_OPENAT
-_GL_WARN_ON_USE (openat, "openat is not portable - "
-                 "use gnulib module openat for portability");
+# undef fnmatch
+# if HAVE_RAW_DECL_FNMATCH
+_GL_WARN_ON_USE (fnmatch,
+                 "fnmatch does not portably work - "
+                 "use gnulib module fnmatch for portability or gnulib module fnmatch-gnu for a glibc compatible implementation");
 # endif
 #endif
 
 
-/* Fix up the FD_* macros, only known to be missing on mingw.  */
-
-#ifndef FD_CLOEXEC
-# define FD_CLOEXEC 1
-#endif
-
-/* Fix up the supported F_* macros.  Intentionally leave other F_*
-   macros undefined.  Only known to be missing on mingw.  */
-
-#ifndef F_DUPFD_CLOEXEC
-# define F_DUPFD_CLOEXEC 0x40000000
-/* Witness variable: 1 if gnulib defined F_DUPFD_CLOEXEC, 0 otherwise.  */
-# define GNULIB_defined_F_DUPFD_CLOEXEC 1
-#else
-# define GNULIB_defined_F_DUPFD_CLOEXEC 0
-#endif
-
-#ifndef F_DUPFD
-# define F_DUPFD 1
-#endif
-
-#ifndef F_GETFD
-# define F_GETFD 2
-#endif
-
-/* Fix up the O_* macros.  */
-
-/* AIX 7.1 with XL C 12.1 defines O_CLOEXEC, O_NOFOLLOW, and O_TTY_INIT
-   to values outside 'int' range, so omit these misdefinitions.
-   But avoid namespace pollution on non-AIX systems.  */
-#ifdef _AIX
-# include <limits.h>
-# if defined O_CLOEXEC && ! (INT_MIN <= O_CLOEXEC && O_CLOEXEC <= INT_MAX)
-#  undef O_CLOEXEC
-# endif
-# if defined O_NOFOLLOW && ! (INT_MIN <= O_NOFOLLOW && O_NOFOLLOW <= INT_MAX)
-#  undef O_NOFOLLOW
-# endif
-# if defined O_TTY_INIT && ! (INT_MIN <= O_TTY_INIT && O_TTY_INIT <= INT_MAX)
-#  undef O_TTY_INIT
-# endif
-#endif
-
-#if !defined O_DIRECT && defined O_DIRECTIO
-/* Tru64 spells it 'O_DIRECTIO'.  */
-# define O_DIRECT O_DIRECTIO
-#endif
-
-#if !defined O_CLOEXEC && defined O_NOINHERIT
-/* Mingw spells it 'O_NOINHERIT'.  */
-# define O_CLOEXEC O_NOINHERIT
-#endif
-
-#ifndef O_CLOEXEC
-# define O_CLOEXEC 0x40000000 /* Try to not collide with system O_* flags.  */
-# define GNULIB_defined_O_CLOEXEC 1
-#else
-# define GNULIB_defined_O_CLOEXEC 0
-#endif
-
-#ifndef O_DIRECT
-# define O_DIRECT 0
-#endif
-
-#ifndef O_DIRECTORY
-# define O_DIRECTORY 0
-#endif
-
-#ifndef O_DSYNC
-# define O_DSYNC 0
-#endif
-
-#ifndef O_EXEC
-# define O_EXEC O_RDONLY /* This is often close enough in older systems.  */
-#endif
-
-#ifndef O_IGNORE_CTTY
-# define O_IGNORE_CTTY 0
-#endif
-
-#ifndef O_NDELAY
-# define O_NDELAY 0
-#endif
-
-#ifndef O_NOATIME
-# define O_NOATIME 0
-#endif
-
-#ifndef O_NONBLOCK
-# define O_NONBLOCK O_NDELAY
-#endif
-
-/* If the gnulib module 'nonblocking' is in use, guarantee a working non-zero
-   value of O_NONBLOCK.  Otherwise, O_NONBLOCK is defined (above) to O_NDELAY
-   or to 0 as fallback.  */
-#if 0
-# if O_NONBLOCK
-#  define GNULIB_defined_O_NONBLOCK 0
-# else
-#  define GNULIB_defined_O_NONBLOCK 1
-#  undef O_NONBLOCK
-#  define O_NONBLOCK 0x40000000
-# endif
-#endif
-
-#ifndef O_NOCTTY
-# define O_NOCTTY 0
-#endif
-
-#ifndef O_NOFOLLOW
-# define O_NOFOLLOW 0
-#endif
-
-#ifndef O_NOLINK
-# define O_NOLINK 0
-#endif
-
-#ifndef O_NOLINKS
-# define O_NOLINKS 0
-#endif
-
-#ifndef O_NOTRANS
-# define O_NOTRANS 0
-#endif
-
-#ifndef O_RSYNC
-# define O_RSYNC 0
-#endif
-
-#ifndef O_SEARCH
-# define O_SEARCH O_RDONLY /* This is often close enough in older systems.  */
-#endif
-
-#ifndef O_SYNC
-# define O_SYNC 0
-#endif
-
-#ifndef O_TTY_INIT
-# define O_TTY_INIT 0
-#endif
-
-#if ~O_ACCMODE & (O_RDONLY | O_WRONLY | O_RDWR | O_EXEC | O_SEARCH)
-# undef O_ACCMODE
-# define O_ACCMODE (O_RDONLY | O_WRONLY | O_RDWR | O_EXEC | O_SEARCH)
-#endif
-
-/* For systems that distinguish between text and binary I/O.
-   O_BINARY is usually declared in fcntl.h  */
-#if !defined O_BINARY && defined _O_BINARY
-  /* For MSC-compatible compilers.  */
-# define O_BINARY _O_BINARY
-# define O_TEXT _O_TEXT
-#endif
-
-#if defined __BEOS__ || defined __HAIKU__
-  /* BeOS 5 and Haiku have O_BINARY and O_TEXT, but they have no effect.  */
-# undef O_BINARY
-# undef O_TEXT
-#endif
-
-#ifndef O_BINARY
-# define O_BINARY 0
-# define O_TEXT 0
-#endif
-
-/* Fix up the AT_* macros.  */
-
-/* Work around a bug in Solaris 9 and 10: AT_FDCWD is positive.  Its
-   value exceeds INT_MAX, so its use as an int doesn't conform to the
-   C standard, and GCC and Sun C complain in some cases.  If the bug
-   is present, undef AT_FDCWD here, so it can be redefined below.  */
-#if 0 < AT_FDCWD && AT_FDCWD == 0xffd19553
-# undef AT_FDCWD
-#endif
-
-/* Use the same bit pattern as Solaris 9, but with the proper
-   signedness.  The bit pattern is important, in case this actually is
-   Solaris with the above workaround.  */
-#ifndef AT_FDCWD
-# define AT_FDCWD (-3041965)
-#endif
-
-/* Use the same values as Solaris 9.  This shouldn't matter, but
-   there's no real reason to differ.  */
-#ifndef AT_SYMLINK_NOFOLLOW
-# define AT_SYMLINK_NOFOLLOW 4096
-#endif
-
-#ifndef AT_REMOVEDIR
-# define AT_REMOVEDIR 1
-#endif
-
-/* Solaris 9 lacks these two, so just pick unique values.  */
-#ifndef AT_SYMLINK_FOLLOW
-# define AT_SYMLINK_FOLLOW 2
-#endif
-
-#ifndef AT_EACCESS
-# define AT_EACCESS 4
-#endif
-
-
-#endif /* _GL_FCNTL_H */
-#endif /* _GL_FCNTL_H */
-#endif
+#endif /* _GL_FNMATCH_H */
+#endif /* _GL_FNMATCH_H */

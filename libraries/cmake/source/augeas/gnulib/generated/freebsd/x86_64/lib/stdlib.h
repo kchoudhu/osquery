@@ -700,7 +700,7 @@ _GL_FUNCDECL_RPL (canonicalize_file_name, char *, (const char *name)
                                                   _GL_ARG_NONNULL ((1)));
 _GL_CXXALIAS_RPL (canonicalize_file_name, char *, (const char *name));
 # else
-#  if !1
+#  if !0
 _GL_FUNCDECL_SYS (canonicalize_file_name, char *, (const char *name)
                                                   _GL_ARG_NONNULL ((1)));
 #  endif
@@ -1027,7 +1027,7 @@ _GL_WARN_ON_USE (ptsname_r, "ptsname_r is not portable - "
 #endif
 
 #if IN_AUGEAS_GNULIB_TESTS
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef putenv
 #   define putenv rpl_putenv
@@ -1342,7 +1342,7 @@ _GL_WARN_ON_USE (reallocarray, "reallocarray is not portable - "
 #endif
 
 #if 1
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define realpath rpl_realpath
 #  endif

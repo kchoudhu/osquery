@@ -61,7 +61,7 @@
 
 #define _GL_ALREADY_INCLUDING_WCHAR_H
 
-#if 1
+#if 0
 # include <features.h> /* for __GLIBC__ */
 #endif
 
@@ -649,7 +649,7 @@ _GL_WARN_ON_USE (btowc, "btowc is unportable - "
 
 /* Convert a wide character to a single-byte character.  */
 #if IN_AUGEAS_GNULIB_TESTS
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef wctob
 #   define wctob rpl_wctob
@@ -700,7 +700,7 @@ _GL_WARN_ON_USE (mbsinit, "mbsinit is unportable - "
 
 /* Convert a multibyte character to a wide character.  */
 #if 1
-# if 1
+# if 0
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef mbrtowc
 #   define mbrtowc rpl_mbrtowc

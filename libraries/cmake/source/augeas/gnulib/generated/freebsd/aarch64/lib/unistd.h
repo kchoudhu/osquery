@@ -618,7 +618,7 @@ _GL_WARN_EXTERN_C int _gl_warn_on_use
 
 
 /* Get getopt(), optarg, optind, opterr, optopt.  */
-#if 0 && !defined _GL_SYSTEM_GETOPT
+#if 01 && !defined _GL_SYSTEM_GETOPT
 # include <getopt-cdefs.h>
 # include <getopt-pfx-core.h>
 #endif
@@ -890,7 +890,7 @@ _GL_WARN_ON_USE (dup3, "dup3 is unportable - "
    -Wl,--disable-auto-import is in use.  */
 _GL_EXTERN_C __declspec(dllimport) char **environ;
 # endif
-# if !1
+# if !0
 /* Set of environment variables and values.  An array of strings of the form
    "VARIABLE=VALUE", terminated with a NULL.  */
 #  if defined __APPLE__ && defined __MACH__
@@ -1119,7 +1119,7 @@ _GL_WARN_ON_USE (ftruncate, "ftruncate is unportable - "
    extension: If BUF is NULL, an array is allocated with 'malloc'; the array
    is SIZE bytes long, unless SIZE == 0, in which case it is as big as
    necessary.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define getcwd rpl_getcwd
 #  endif
@@ -1799,7 +1799,7 @@ _GL_CXXALIASWARN (read);
    successful, otherwise -1 and errno set.
    See the POSIX:2008 specification
    <http://pubs.opengroup.org/onlinepubs/9699919799/functions/readlink.html>.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define readlink rpl_readlink
 #  endif
@@ -1909,7 +1909,7 @@ _GL_WARN_ON_USE (sethostname, "sethostname is unportable - "
    Returns the number of seconds left to sleep.
    See the POSIX:2008 specification
    <http://pubs.opengroup.org/onlinepubs/9699919799/functions/sleep.html>.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef sleep
 #   define sleep rpl_sleep
@@ -1933,7 +1933,7 @@ _GL_WARN_ON_USE (sleep, "sleep is unportable - "
 
 
 #if IN_AUGEAS_GNULIB_TESTS
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef symlink
 #   define symlink rpl_symlink
@@ -2100,7 +2100,7 @@ _GL_WARN_ON_USE (unlinkat, "unlinkat is not portable - "
    Returns 0 on completion, or -1 on range error.
    See the POSIX:2001 specification
    <http://www.opengroup.org/susv3xsh/usleep.html>.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef usleep
 #   define usleep rpl_usleep

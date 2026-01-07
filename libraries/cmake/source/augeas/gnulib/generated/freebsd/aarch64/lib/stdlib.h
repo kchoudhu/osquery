@@ -700,7 +700,7 @@ _GL_FUNCDECL_RPL (canonicalize_file_name, char *, (const char *name)
                                                   _GL_ARG_NONNULL ((1)));
 _GL_CXXALIAS_RPL (canonicalize_file_name, char *, (const char *name));
 # else
-#  if !1
+#  if !0
 _GL_FUNCDECL_SYS (canonicalize_file_name, char *, (const char *name)
                                                   _GL_ARG_NONNULL ((1)));
 #  endif
@@ -913,7 +913,7 @@ _GL_WARN_ON_USE (mkostemps, "mkostemps is unportable - "
    implementation.
    Returns the open file descriptor if successful, otherwise -1 and errno
    set.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define mkstemp rpl_mkstemp
 #  endif
@@ -1027,7 +1027,7 @@ _GL_WARN_ON_USE (ptsname_r, "ptsname_r is not portable - "
 #endif
 
 #if IN_AUGEAS_GNULIB_TESTS
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef putenv
 #   define putenv rpl_putenv
@@ -1342,7 +1342,7 @@ _GL_WARN_ON_USE (reallocarray, "reallocarray is not portable - "
 #endif
 
 #if 1
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define realpath rpl_realpath
 #  endif
@@ -1400,7 +1400,7 @@ _GL_WARN_ON_USE (secure_getenv, "secure_getenv is unportable - "
 #if IN_AUGEAS_GNULIB_TESTS
 /* Set NAME to VALUE in the environment.
    If REPLACE is nonzero, overwrite an existing value.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef setenv
 #   define setenv rpl_setenv
@@ -1419,7 +1419,7 @@ _GL_FUNCDECL_SYS (setenv, int,
 _GL_CXXALIAS_SYS (setenv, int,
                   (const char *name, const char *value, int replace));
 # endif
-# if !(0 && !1)
+# if !(1 && !1)
 _GL_CXXALIASWARN (setenv);
 # endif
 #elif defined GNULIB_POSIXCHECK
@@ -1550,7 +1550,7 @@ _GL_WARN_ON_USE (unlockpt, "unlockpt is not portable - "
 
 #if IN_AUGEAS_GNULIB_TESTS
 /* Remove the variable NAME from the environment.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef unsetenv
 #   define unsetenv rpl_unsetenv
@@ -1563,7 +1563,7 @@ _GL_FUNCDECL_SYS (unsetenv, int, (const char *name) _GL_ARG_NONNULL ((1)));
 #  endif
 _GL_CXXALIAS_SYS (unsetenv, int, (const char *name));
 # endif
-# if !(0 && !1)
+# if !(1 && !1)
 _GL_CXXALIASWARN (unsetenv);
 # endif
 #elif defined GNULIB_POSIXCHECK

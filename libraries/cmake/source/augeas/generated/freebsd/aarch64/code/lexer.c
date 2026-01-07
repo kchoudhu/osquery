@@ -1,9 +1,9 @@
-#line 2 "lexer.c"
+#line 1 "lexer.c"
 /* config.h must precede flex's inclusion of <stdio.h>
    in order for its _GNU_SOURCE definition to take effect.  */
 #include <config.h>
 
-#line 7 "lexer.c"
+#line 6 "lexer.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -806,9 +806,9 @@ static char *regexp_literal(const char *s, int len) {
 
   return u;
 }
-#line 810 "lexer.c"
+#line 809 "lexer.c"
 
-#line 812 "lexer.c"
+#line 811 "lexer.c"
 
 #define INITIAL 0
 #define COMMENT 1
@@ -1093,7 +1093,7 @@ YY_DECL
 	{
 #line 81 "lexer.l"
 
-#line 1097 "lexer.c"
+#line 1096 "lexer.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1376,7 +1376,7 @@ YY_RULE_SETUP
 #line 182 "lexer.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1380 "lexer.c"
+#line 1379 "lexer.c"
 
 	case YY_END_OF_BUFFER:
 		{

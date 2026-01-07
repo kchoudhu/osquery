@@ -890,7 +890,7 @@ _GL_WARN_ON_USE (dup3, "dup3 is unportable - "
    -Wl,--disable-auto-import is in use.  */
 _GL_EXTERN_C __declspec(dllimport) char **environ;
 # endif
-# if !1
+# if !0
 /* Set of environment variables and values.  An array of strings of the form
    "VARIABLE=VALUE", terminated with a NULL.  */
 #  if defined __APPLE__ && defined __MACH__
@@ -1799,7 +1799,7 @@ _GL_CXXALIASWARN (read);
    successful, otherwise -1 and errno set.
    See the POSIX:2008 specification
    <http://pubs.opengroup.org/onlinepubs/9699919799/functions/readlink.html>.  */
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define readlink rpl_readlink
 #  endif
@@ -1933,7 +1933,7 @@ _GL_WARN_ON_USE (sleep, "sleep is unportable - "
 
 
 #if IN_AUGEAS_GNULIB_TESTS
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef symlink
 #   define symlink rpl_symlink

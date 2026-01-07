@@ -597,7 +597,7 @@ _GL_WARN_ON_USE (ffsll, "ffsll is not portable - use the ffsll module");
 
 /* Return the first instance of C within N bytes of S, or NULL.  */
 #if 1
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define memchr rpl_memchr
 #  endif
@@ -672,7 +672,7 @@ _GL_WARN_ON_USE (memmem, "memmem is unportable and often quadratic - "
 /* Copy N bytes of SRC to DEST, return pointer to bytes after the
    last written byte.  */
 #if 1
-# if ! 1
+# if ! 0
 _GL_FUNCDECL_SYS (mempcpy, void *,
                   (void *restrict __dest, void const *restrict __src,
                    size_t __n)
@@ -722,7 +722,7 @@ _GL_WARN_ON_USE (memrchr, "memrchr is unportable - "
    memchr(S,C,N), at the expense of undefined behavior if C does not
    occur within N bytes.  */
 #if 1
-# if ! 1
+# if ! 0
 _GL_FUNCDECL_SYS (rawmemchr, void *, (void const *__s, int __c_in)
                                      _GL_ATTRIBUTE_PURE
                                      _GL_ARG_NONNULL ((1)));
@@ -769,7 +769,7 @@ _GL_WARN_ON_USE (stpcpy, "stpcpy is unportable - "
 /* Copy no more than N bytes of SRC to DST, returning a pointer past the
    last non-NUL byte written into DST.  */
 #if 1
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef stpncpy
 #   define stpncpy rpl_stpncpy
@@ -823,7 +823,7 @@ _GL_FUNCDECL_RPL (strchrnul, char *, (const char *__s, int __c_in)
 _GL_CXXALIAS_RPL (strchrnul, char *,
                   (const char *str, int ch));
 # else
-#  if ! 1
+#  if ! 0
 _GL_FUNCDECL_SYS (strchrnul, char *, (char const *__s, int __c_in)
                                      _GL_ATTRIBUTE_PURE
                                      _GL_ARG_NONNULL ((1)));
@@ -1067,7 +1067,7 @@ _GL_WARN_ON_USE (strsep, "strsep is unportable - "
 #endif
 
 #if 1
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define strstr rpl_strstr
 #  endif
@@ -1444,7 +1444,7 @@ _GL_EXTERN_C char * mbstok_r (char *string, const char *delim, char **save_ptr)
 
 /* Map any int, typically from errno, into an error message.  */
 #if IN_AUGEAS_GNULIB_TESTS
-# if 0
+# if 1
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   undef strerror
 #   define strerror rpl_strerror

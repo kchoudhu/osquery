@@ -61,7 +61,7 @@
 
 #define _GL_ALREADY_INCLUDING_WCHAR_H
 
-#if 1
+#if 0
 # include <features.h> /* for __GLIBC__ */
 #endif
 
