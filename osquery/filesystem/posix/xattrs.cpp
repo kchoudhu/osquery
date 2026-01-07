@@ -15,7 +15,12 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+
+#if defined(__FreeBSD__)
+#include <sys/extattr.h>
+#else
 #include <sys/xattr.h>
+#endif
 
 namespace osquery {
 #if defined(__APPLE__)
@@ -24,6 +29,13 @@ namespace osquery {
 
 #define fgetxattr(fd, attr_name, buffer, buffer_size)                          \
   ::fgetxattr(fd, attr_name, buffer, buffer_size, 0, 0)
+
+#elif defined(__FreeBSD__)
+#define flistxattr(fd, buffer, buffer_size)                                    \
+  ::extattr_list_fd(fd, EXTATTR_NAMESPACE_USER, buffer, buffer_size)
+
+#define fgetxattr(fd, attr_name, buffer, buffer_size)                          \
+  ::extattr_get_fd(fd, EXTATTR_NAMESPACE_USER, attr_name, buffer, buffer_size)
 #endif
 
 std::string xAttrFileErrorToString(XAttrFileError error,
