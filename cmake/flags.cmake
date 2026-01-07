@@ -271,6 +271,33 @@ function(setupBuildFlags)
       )
 
       list(APPEND osquery_defines ${osquery_macos_common_defines})
+
+    elseif(DEFINED PLATFORM_FREEBSD)
+      set(freebsd_cxx_link_options
+        -lresolv
+        -pthread
+      )
+
+      set(freebsd_cxx_link_libraries
+        dl
+      )
+
+      set(osquery_freebsd_common_defines
+        FREEBSD=1
+        BSD=1
+        OSQUERY_FREEBSD=1
+        OSQUERY_BUILD_PLATFORM="freebsd"
+        OSQUERY_BUILD_DISTRO="11"
+      )
+
+      target_link_options(cxx_settings INTERFACE
+        ${freebsd_cxx_link_options}
+      )
+      target_link_libraries(cxx_settings INTERFACE
+        ${freebsd_cxx_link_libraries}
+      )
+
+      list(APPEND osquery_defines ${osquery_freebsd_common_defines})
     else()
       message(FATAL_ERROR "Platform not supported!")
     endif()

@@ -320,6 +320,14 @@ function(generateOsqueryTablesSystemSystemtable)
       -Wno-c99-extensions
       -Wno-undeclared-selector
     )
+
+  elseif(DEFINED PLATFORM_FREEBSD)
+    target_link_libraries(osquery_tables_system_systemtable PUBLIC
+      procstat
+      kvm
+      elf
+      jail
+    )
   endif()
 
   set(public_header_files
