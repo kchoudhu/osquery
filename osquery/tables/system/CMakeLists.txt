@@ -176,7 +176,7 @@ function(generateOsqueryTablesSystemSystemtable)
   elseif(DEFINED PLATFORM_FREEBSD)
     list(APPEND source_files
       freebsd/fbsd_kmods.cpp
-      freebsd/freebsd_jails.cpp
+      freebsd/fbsd_jails.cpp
       freebsd/groups.cpp
       freebsd/mounts.cpp
       freebsd/os_version.cpp

@@ -159,7 +159,7 @@ function(generateNativeTables)
     "darwin/xprotect_meta.table:macos"
     "darwin/xprotect_reports.table:macos"
     "freebsd/fbsd_kmods.table:freebsd"
-    "freebsd/freebsd_jails.table:freebsd"
+    "freebsd/fbsd_jails.table:freebsd"
     "freebsd/pkg_packages.table:freebsd"
     "jetbrains_plugins.table:linux,macos,windows"
     "linux/apparmor_events.table:linux"

@@ -1,4 +1,4 @@
-table_name("freebsd_jails")
+table_name("fbsd_jails")
 description("FreeBSD jails. Jails can be nested, with parent_jid referencing the containing jail's jid (0 for root jails).")
 schema([
     Column("jid", INTEGER, "Jail ID"),
@@ -17,4 +17,4 @@ schema([
     Column("dying", INTEGER, "1 if jail is in the process of being removed"),
     Column("persist", INTEGER, "1 if jail exists without any processes"),
 ])
-implementation("freebsd/freebsd_jails@genFreebsdJails")
+implementation("fbsd_jails@genFbsdJails")

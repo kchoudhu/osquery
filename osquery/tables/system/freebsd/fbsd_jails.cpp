@@ -73,7 +73,7 @@ std::string formatIPv6Addresses(const std::vector<struct in6_addr>& addrs) {
 
 } // namespace
 
-QueryData genFreebsdJails(QueryContext& context) {
+QueryData genFbsdJails(QueryContext& context) {
   QueryData results;
 
   // Iterate through all jails using lastjid
