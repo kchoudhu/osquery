@@ -52,11 +52,98 @@ bool isOpenSSHKeyEncrypted(const std::string& keys_content) {
   return prefix != kOpenSshUnencryptedPrefix;
 }
 
+// Parse key type from OpenSSH format keys (e.g., "ssh-ed25519" -> "ed25519")
+std::string getOpenSSHKeyType(const std::string& keys_content) {
+  // Find the base64-encoded body after the header
+  auto start = keys_content.find('\n');
+  if (start == std::string::npos) {
+    return "";
+  }
+  start++;
+
+  // Find the end marker
+  auto end = keys_content.find("-----END");
+  if (end == std::string::npos || end <= start) {
+    return "";
+  }
+
+  // Extract and clean base64 content
+  std::string base64_content;
+  for (size_t i = start; i < end; i++) {
+    char c = keys_content[i];
+    if (c != '\n' && c != '\r' && c != ' ') {
+      base64_content += c;
+    }
+  }
+
+  // Decode base64 using OpenSSL
+  BIO* b64 = BIO_new(BIO_f_base64());
+  BIO* bmem = BIO_new_mem_buf(base64_content.c_str(), base64_content.size());
+  bmem = BIO_push(b64, bmem);
+  BIO_set_flags(bmem, BIO_FLAGS_BASE64_NO_NL);
+
+  std::vector<unsigned char> decoded(base64_content.size());
+  int decoded_len = BIO_read(bmem, decoded.data(), decoded.size());
+  BIO_free_all(bmem);
+
+  if (decoded_len < 50) {
+    return "";
+  }
+
+  // OpenSSH format: magic(15) + ciphername(4+len) + kdfname(4+len) + kdfopts(4+len) + numkeys(4) + pubkey(4+len)
+  // Inside pubkey: keytype(4+len) + ...
+  size_t pos = 15;  // Skip "openssh-key-v1\0"
+
+  // Skip cipher name
+  if (pos + 4 > static_cast<size_t>(decoded_len)) return "";
+  uint32_t cipher_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+  pos += 4 + cipher_len;
+
+  // Skip kdf name
+  if (pos + 4 > static_cast<size_t>(decoded_len)) return "";
+  uint32_t kdf_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+  pos += 4 + kdf_len;
+
+  // Skip kdf options
+  if (pos + 4 > static_cast<size_t>(decoded_len)) return "";
+  uint32_t kdfopts_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+  pos += 4 + kdfopts_len;
+
+  // Skip number of keys
+  pos += 4;
+
+  // Read public key blob length
+  if (pos + 4 > static_cast<size_t>(decoded_len)) return "";
+  uint32_t pubkey_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+  pos += 4;
+
+  if (pubkey_len == 0 || pos + 4 > static_cast<size_t>(decoded_len)) return "";
+
+  // Read key type string length (inside public key blob)
+  uint32_t keytype_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+  pos += 4;
+
+  if (keytype_len == 0 || keytype_len > 64 || pos + keytype_len > static_cast<size_t>(decoded_len)) return "";
+
+  std::string keytype(reinterpret_cast<char*>(&decoded[pos]), keytype_len);
+
+  // Convert SSH key type to simple name (e.g., "ssh-ed25519" -> "ed25519")
+  if (keytype == "ssh-ed25519") return "ed25519";
+  if (keytype == "ssh-rsa") return "rsa";
+  if (keytype == "ssh-dss") return "dsa";
+  if (keytype == "ecdsa-sha2-nistp256") return "ecdsa-p256";
+  if (keytype == "ecdsa-sha2-nistp384") return "ecdsa-p384";
+  if (keytype == "ecdsa-sha2-nistp521") return "ecdsa-p521";
+
+  return keytype;  // Return as-is for unknown types
+}
+
 // parsePrivateKey returns true iff the key is valid.
 // Tries to parse the .PEM using openssl. If that fails, it checks
 // if it's an openssh key.
 bool parsePrivateKey(const std::string& keys_content,
                      int& key_type,
+                     std::string& key_type_name,
                      std::string& key_group_name,
                      int& key_length,
                      int& key_security_bits,
@@ -96,6 +183,7 @@ bool parsePrivateKey(const std::string& keys_content,
     // we can delete this conditional.
     if (isOpenSSHKey(keys_content)) {
       key_type = EVP_PKEY_NONE;
+      key_type_name = getOpenSSHKeyType(keys_content);
       is_encrypted = isOpenSSHKeyEncrypted(keys_content);
       return true;
     }
@@ -167,12 +255,14 @@ void genSSHkeyForHosts(const std::string& uid,
       continue;
     }
     int key_type;
+    std::string key_type_name;
     std::string key_group_name;
     int key_length = -1;
     int key_security_bits = -1;
     bool encrypted;
     bool parsed = parsePrivateKey(keys_content,
                                   key_type,
+                                  key_type_name,
                                   key_group_name,
                                   key_length,
                                   key_security_bits,
@@ -183,7 +273,8 @@ void genSSHkeyForHosts(const std::string& uid,
       r["uid"] = uid;
       r["path"] = kfile;
       r["encrypted"] = encrypted ? "1" : "0";
-      r["key_type"] = keyTypeAsString(key_type);
+      // Use OpenSSH key type name if available, otherwise use OpenSSL key type
+      r["key_type"] = key_type_name.empty() ? keyTypeAsString(key_type) : key_type_name;
       r["key_group_name"] = key_group_name;
       r["key_length"] = INTEGER(key_length);
       r["key_security_bits"] = INTEGER(key_security_bits);
