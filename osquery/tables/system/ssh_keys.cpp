@@ -52,8 +52,11 @@ bool isOpenSSHKeyEncrypted(const std::string& keys_content) {
   return prefix != kOpenSshUnencryptedPrefix;
 }
 
-// Parse key type from OpenSSH format keys (e.g., "ssh-ed25519" -> "ed25519")
-std::string getOpenSSHKeyType(const std::string& keys_content) {
+// Parse key type, length, and security bits from OpenSSH format keys
+// Returns the key type name (e.g., "ed25519"), and sets key_length and key_security_bits
+std::string getOpenSSHKeyType(const std::string& keys_content,
+                              int& key_length,
+                              int& key_security_bits) {
   // Find the base64-encoded body after the header
   auto start = keys_content.find('\n');
   if (start == std::string::npos) {
@@ -126,16 +129,88 @@ std::string getOpenSSHKeyType(const std::string& keys_content) {
   if (keytype_len == 0 || keytype_len > 64 || pos + keytype_len > static_cast<size_t>(decoded_len)) return "";
 
   std::string keytype(reinterpret_cast<char*>(&decoded[pos]), keytype_len);
+  pos += keytype_len;
 
-  // Convert SSH key type to simple name (e.g., "ssh-ed25519" -> "ed25519")
-  if (keytype == "ssh-ed25519") return "ed25519";
-  if (keytype == "ssh-rsa") return "rsa";
-  if (keytype == "ssh-dss") return "dsa";
-  if (keytype == "ecdsa-sha2-nistp256") return "ecdsa-p256";
-  if (keytype == "ecdsa-sha2-nistp384") return "ecdsa-p384";
-  if (keytype == "ecdsa-sha2-nistp521") return "ecdsa-p521";
+  // Extract key length and security bits based on key type
+  if (keytype == "ssh-ed25519") {
+    // Ed25519 has fixed 256-bit keys with 128-bit security
+    key_length = 256;
+    key_security_bits = 128;
+    return "ed25519";
+  }
 
-  return keytype;  // Return as-is for unknown types
+  if (keytype == "ssh-rsa") {
+    // RSA public key format: e (exponent) + n (modulus)
+    // Key length is the bit length of the modulus n
+    // Skip e (exponent)
+    if (pos + 4 > static_cast<size_t>(decoded_len)) return "rsa";
+    uint32_t e_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+    pos += 4 + e_len;
+
+    // Read n (modulus) length
+    if (pos + 4 > static_cast<size_t>(decoded_len)) return "rsa";
+    uint32_t n_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+    pos += 4;
+
+    if (n_len == 0 || pos + n_len > static_cast<size_t>(decoded_len)) return "rsa";
+
+    // Calculate bit length of modulus (accounting for leading zero byte if present)
+    size_t n_bytes = n_len;
+    if (decoded[pos] == 0 && n_len > 1) {
+      n_bytes--;  // Leading zero byte for sign, don't count it
+    }
+    key_length = static_cast<int>(n_bytes * 8);
+
+    // RSA security bits approximation (based on NIST SP 800-57)
+    if (key_length >= 15360) key_security_bits = 256;
+    else if (key_length >= 7680) key_security_bits = 192;
+    else if (key_length >= 3072) key_security_bits = 128;
+    else if (key_length >= 2048) key_security_bits = 112;
+    else if (key_length >= 1024) key_security_bits = 80;
+    else key_security_bits = 64;
+
+    return "rsa";
+  }
+
+  if (keytype == "ssh-dss") {
+    // DSA public key format: p + q + g + y
+    // Key length is the bit length of p
+    if (pos + 4 > static_cast<size_t>(decoded_len)) return "dsa";
+    uint32_t p_len = (decoded[pos] << 24) | (decoded[pos+1] << 16) | (decoded[pos+2] << 8) | decoded[pos+3];
+    pos += 4;
+
+    if (p_len == 0 || pos + p_len > static_cast<size_t>(decoded_len)) return "dsa";
+
+    size_t p_bytes = p_len;
+    if (decoded[pos] == 0 && p_len > 1) {
+      p_bytes--;
+    }
+    key_length = static_cast<int>(p_bytes * 8);
+
+    // DSA security is limited by the 160-bit q parameter (80 bits security max for standard DSA)
+    key_security_bits = 80;
+    return "dsa";
+  }
+
+  if (keytype == "ecdsa-sha2-nistp256") {
+    key_length = 256;
+    key_security_bits = 128;
+    return "ecdsa-p256";
+  }
+
+  if (keytype == "ecdsa-sha2-nistp384") {
+    key_length = 384;
+    key_security_bits = 192;
+    return "ecdsa-p384";
+  }
+
+  if (keytype == "ecdsa-sha2-nistp521") {
+    key_length = 521;
+    key_security_bits = 256;
+    return "ecdsa-p521";
+  }
+
+  return keytype;  // Return as-is for unknown types (key_length/security_bits unchanged)
 }
 
 // parsePrivateKey returns true iff the key is valid.
@@ -183,7 +258,7 @@ bool parsePrivateKey(const std::string& keys_content,
     // we can delete this conditional.
     if (isOpenSSHKey(keys_content)) {
       key_type = EVP_PKEY_NONE;
-      key_type_name = getOpenSSHKeyType(keys_content);
+      key_type_name = getOpenSSHKeyType(keys_content, key_length, key_security_bits);
       is_encrypted = isOpenSSHKeyEncrypted(keys_content);
       return true;
     }
