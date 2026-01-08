@@ -14,6 +14,7 @@
 // clang-format off
 #include <sys/param.h>
 #include <sys/jail.h>
+#include <sys/socket.h>
 #include <sys/uio.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
